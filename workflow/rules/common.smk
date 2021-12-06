@@ -31,7 +31,9 @@ validate(samples, schema="../schemas/samples.schema.yaml")
 
 ### Read and validate units file
 
-units = pandas.read_table(config["units"], dtype=str).set_index(["sample", "type", "run", "lane"], drop=False)
+units = pandas.read_table(config["units"], dtype=str).set_index(
+    ["sample", "type", "run", "lane"], drop=False
+)
 validate(units, schema="../schemas/units.schema.yaml")
 
 ### Set wildcard constraints
