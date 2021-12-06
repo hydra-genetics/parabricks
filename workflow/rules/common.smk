@@ -31,9 +31,7 @@ validate(samples, schema="../schemas/samples.schema.yaml")
 
 ### Read and validate units file
 
-units = pandas.read_table(config["units"], dtype=str).set_index(
-    ["sample", "type", "run", "lane"], drop=False
-)
+units = pandas.read_table(config["units"], dtype=str).set_index(["sample", "type", "run", "lane"], drop=False)
 validate(units, schema="../schemas/units.schema.yaml")
 
 ### Set wildcard constraints
@@ -54,8 +52,4 @@ def get_num_gpus(wildcards):
 
 
 def compile_output_list(wildcards):
-    return [
-        "parabricks/fq2bam/%s_%s.bam" % (sample, t)
-        for sample in get_samples(samples)
-        for t in get_unit_types(units, sample)
-    ]
+    return ["parabricks/fq2bam/%s_%s.bam" % (sample, t) for sample in get_samples(samples) for t in get_unit_types(units, sample)]
