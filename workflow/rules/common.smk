@@ -42,6 +42,15 @@ wildcard_constraints:
     unit="N|T|R",
 
 
+def get_num_gpus(wildcards):
+    gres = config.get("fq2bam", "gpu:1").get("gres", "gpu:1").split(",")
+    gres_dict = dict()
+    for item in gres:
+        items = item.split(":")
+        gres_dict[items[0]] = items[1]
+    return gres_dict["gpu"]
+
+
 def compile_output_list(wildcards):
     return [
         "parabricks/dummy/%s_%s.dummy.txt" % (sample, t)
