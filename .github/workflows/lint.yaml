@@ -23,7 +23,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Linting
-        uses: snakemake/snakemake-github-action@v1.22.0
+        uses: snakemake/snakemake-github-action@v1.24.0
         with:
           directory: ".tests/integration"
           snakefile: "workflow/Snakefile"
