@@ -3,7 +3,10 @@ __copyright__ = "Copyright 2021, Martin R"
 __email__ = "martin.rippin@scilifelab.uu.se"
 __license__ = "GPL-3"
 
+
 include: "rules/common.smk"
+include: "rules/fq2bam.smk"
+
 
 rule all:
     input:
