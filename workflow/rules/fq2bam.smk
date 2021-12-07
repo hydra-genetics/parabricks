@@ -9,9 +9,11 @@ rule fq2bam:
         fastq1="prealignment/merged/{sample}_{type}_fastq1.fastq.gz",
         fastq2="prealignment/merged/{sample}_{type}_fastq2.fastq.gz",
         fasta=config["reference"]["fasta"],
+        sites=config["reference"]["sites"],
     output:
         bam="parabricks/fq2bam/{sample}_{type}.bam",
         metrics="parabricks/fq2bam/{sample}_{type}.metrics",
+        recal="parabricks/fq2bam/{sample}_{type}.txt",
     params:
         num_gpus=get_num_gpus,
         platform="illumina",
@@ -38,10 +40,12 @@ rule fq2bam:
         "pbrun fq2bam "
         "--ref {input.fasta} "
         "--in-fq {input.fastq1} {input.fastq2} "
+        "--knownSites {input.sites} "
         "--read-group-sm {wildcards.sample} "
         "--read-group-id-prefix {wildcards.sample} "
         "--read-group-pl {params.platform} "
         "--num-gpus {params.num_gpus} "
         "--out-bam {output.bam} "
         "--out-duplicate-metrics {output.metrics} "
+        "--out-recal-file {output.recal} "
         "--tmp-dir parabricks/fq2bam/{wildcards.sample}_{wildcards.type} &> {log}"
