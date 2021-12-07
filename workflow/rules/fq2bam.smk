@@ -1,3 +1,9 @@
+__author__ = "Martin R"
+__copyright__ = "Copyright 2021, Martin R"
+__email__ = "martin.rippin@scilifelab.uu.se"
+__license__ = "GPL-3"
+
+
 rule fq2bam:
     input:
         fastq1="prealignment/merged/{sample}_{type}_fastq1.fastq.gz",
