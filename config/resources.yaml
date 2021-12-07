@@ -5,4 +5,20 @@ default_resources:
   time: "12:00:00"
   mem_mb: 1024
   mem_per_cpu: 3072
-  partition: core
+  partition: "core"
+
+fq2bam:
+  threads: 1
+  time: "12:00:00"
+  mem_mb: 1024
+  mem_per_cpu: 1024
+  partition: "gpu"
+  gres: "gpu:1"
+
+mutectcaller:
+  threads: 1
+  time: "12:00:00"
+  mem_mb: 1024
+  mem_per_cpu: 1024
+  partition: "gpu"
+  gres: "gpu:1"
