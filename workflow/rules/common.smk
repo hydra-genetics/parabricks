@@ -52,4 +52,4 @@ def get_num_gpus(wildcards):
 
 
 def compile_output_list(wildcards):
-    return ["parabricks/mutectcaller/%s.vcf" % (sample) for sample in get_samples(samples)]
+    return ["parabricks/%s/%s.vcf" % (tool, sample) for tool in ["deepvariant", "mutectcaller"] for sample in get_samples(samples)]
