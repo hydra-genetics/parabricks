@@ -6,6 +6,7 @@ __license__ = "GPL-3"
 
 include: "rules/common.smk"
 include: "rules/fq2bam.smk"
+include: "rules/mutectcaller.smk"
 
 
 rule all:
