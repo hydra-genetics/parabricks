@@ -12,7 +12,7 @@ rule mutectcaller_tn:
         recal_n="parabricks/fq2bam/{sample}_N.txt",
         fasta=config["reference"]["fasta"],
     output:
-        vcf="parabricks/mutectcaller/{sample}.vcf"
+        vcf="parabricks/mutectcaller/{sample}.vcf",
     params:
         num_gpus=get_num_gpus,
     log:
