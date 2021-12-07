@@ -16,7 +16,7 @@ rule fq2bam:
         recal="parabricks/fq2bam/{sample}_{type}.txt",
     params:
         num_gpus=get_num_gpus,
-        platform="illumina",
+        platform=lambda wildcards: get_unit_platforms(units, wildcards),
     log:
         "parabricks/fq2bam/{sample}_{type}.bam.log",
     benchmark:
