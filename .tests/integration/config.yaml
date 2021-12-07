@@ -4,3 +4,4 @@ units: "units.tsv"
 
 reference:
   fasta: "reference/reference.fasta"
+  sites: "reference/sites.list"

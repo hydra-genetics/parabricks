@@ -12,3 +12,10 @@ fq2bam:
   mem_per_cpu: 4800
   partition: "GPU"
   threads: 10
+
+mutectcaller:
+  gres: "gpu:1"
+  mem_mb: 48000
+  mem_per_cpu: 4800
+  partition: "GPU"
+  threads: 10
