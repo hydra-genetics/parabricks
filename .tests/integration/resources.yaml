@@ -6,6 +6,13 @@ default_resources:
   threads: 1
   time: "12:00:00"
 
+deepvariant:
+  gres: "gpu:1"
+  mem_mb: 48000
+  mem_per_cpu: 4800
+  partition: "GPU"
+  threads: 10
+
 fq2bam:
   gres: "gpu:1"
   mem_mb: 48000
