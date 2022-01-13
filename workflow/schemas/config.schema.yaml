@@ -2,18 +2,29 @@ $schema: "http://json-schema.org/draft-04/schema#"
 description: snakemake configuration file
 type: object
 properties:
-  samples:
-    type: string
-  units:
-    type: string
   resources:
     type: string
-    description: Path to resources.yaml file
-  default_container:
+    description: path to resources.yaml file
+  samples:
     type: string
-    description: name or path to a default docker/singularity container
+    description: path to samples.tsv file
+  units:
+    type: string
+    description: path to units.tsv file
+  reference:
+    type: object
+    properties:
+      fasta:
+        type: string
+        description: path to reference fasta file
+      sites:
+        type: string
+        description: path to known sites list file
+    required:
+      - fasta
+      - sites
   required:
     - samples
     - units
     - resources
-    - default_container
+    - reference

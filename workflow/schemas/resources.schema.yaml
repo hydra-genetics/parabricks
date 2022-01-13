@@ -5,12 +5,9 @@ properties:
   default_resources:
     type: object
     properties:
-      threads:
-        type: integer
-        description: default number of threads that will be used by a rule
-      time:
+      gres:
         type: string
-        description: default max execution time for a rule
+        description: default generic resource scheduling for a rule
       mem_mb:
         type: integer
         description: default memory used for a rule
@@ -20,6 +17,85 @@ properties:
       partition:
         type: string
         description: default partition to use on the cluser for a rule
+      threads:
+        type: integer
+        description: default number of threads that will be used by a rule
+      time:
+        type: string
+        description: default max execution time for a rule
+    required:
+      - gres
+      - mem_mb
+      - mem_per_cpu
+      - partition
+      - threads
+      - time
+
+  deepvariant:
+    type: object
+    properties:
+      gres:
+        type: string
+        description: generic resource scheduling for a 'deepvariant' rule
+      mem_mb:
+        type: integer
+        description: memory used for a 'deepvariant' rule
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for a 'deepvariant' rule
+      partition:
+        type: string
+        description: partition to use on the cluser for a 'deepvariant' rule
+      threads:
+        type: integer
+        description: number of threads that will be used by a 'deepvariant' rule
+      time:
+        type: string
+        description: max execution time for a 'deepvariant' rule
+
+  fq2bam:
+    type: object
+    properties:
+      gres:
+        type: string
+        description: generic resource scheduling for a 'fq2bam' rule
+      mem_mb:
+        type: integer
+        description: memory used for a 'fq2bam' rule
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for a 'fq2bam' rule
+      partition:
+        type: string
+        description: partition to use on the cluser for a 'fq2bam' rule
+      threads:
+        type: integer
+        description: number of threads that will be used by a 'fq2bam' rule
+      time:
+        type: string
+        description: max execution time for a 'fq2bam' rule
+
+  mutectcaller:
+    type: object
+    properties:
+      gres:
+        type: string
+        description: generic resource scheduling for a 'mutectcaller' rule
+      mem_mb:
+        type: integer
+        description: memory used for a 'mutectcaller' rule
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for a 'mutectcaller' rule
+      partition:
+        type: string
+        description: partition to use on the cluser for a 'mutectcaller' rule
+      threads:
+        type: integer
+        description: number of threads that will be used by a 'mutectcaller' rule
+      time:
+        type: string
+        description: max execution time for a 'mutectcaller' rule
 
   required:
     - default_resources
