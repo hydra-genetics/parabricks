@@ -26,7 +26,7 @@ rule fq2bam:
         )
     threads: config.get("fq2bam", {}).get("threads", config["default_resources"]["threads"])
     resources:
-        gres=config.get("fq2bam", {}).get("gres", config["default_resources"]["gres"]),
+        gres=config.get("fq2bam", {}).get("gres", ""),
         mem_mb=config.get("fq2bam", {}).get("mem_mb", config["default_resources"]["mem_mb"]),
         mem_per_cpu=config.get("fq2bam", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]),
         partition=config.get("fq2bam", {}).get("partition", config["default_resources"]["partition"]),

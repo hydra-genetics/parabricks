@@ -24,7 +24,6 @@ properties:
         type: string
         description: default max execution time for a rule
     required:
-      - gres
       - mem_mb
       - mem_per_cpu
       - partition

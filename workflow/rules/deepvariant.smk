@@ -21,7 +21,7 @@ rule deepvariant:
         )
     threads: config.get("deepvariant", {}).get("threads", config["default_resources"]["threads"])
     resources:
-        gres=config.get("deepvariant", {}).get("gres", config["default_resources"]["gres"]),
+        gres=config.get("deepvariant", {}).get("gres", ""),
         mem_mb=config.get("deepvariant", {}).get("mem_mb", config["default_resources"]["mem_mb"]),
         mem_per_cpu=config.get("deepvariant", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]),
         partition=config.get("deepvariant", {}).get("partition", config["default_resources"]["partition"]),
