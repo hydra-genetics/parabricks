@@ -24,7 +24,7 @@ rule mutectcaller_tn:
         )
     threads: config.get("mutectcaller", {}).get("threads", config["default_resources"]["threads"])
     resources:
-        gres=config.get("mutectcaller", {}).get("gres", config["default_resources"]["gres"]),
+        gres=config.get("mutectcaller", {}).get("gres", ""),
         mem_mb=config.get("mutectcaller", {}).get("mem_mb", config["default_resources"]["mem_mb"]),
         mem_per_cpu=config.get("mutectcaller", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]),
         partition=config.get("mutectcaller", {}).get("partition", config["default_resources"]["partition"]),
