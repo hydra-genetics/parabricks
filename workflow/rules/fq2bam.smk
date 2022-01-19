@@ -15,7 +15,7 @@ rule fq2bam:
         metrics="parabricks/fq2bam/{sample}_{type}.metrics",
         recal="parabricks/fq2bam/{sample}_{type}.txt",
     params:
-        num_gpus=get_num_gpus,
+        num_gpus=lambda wildcards: get_num_gpus("fq2bam", wildcards),
         platform=lambda wildcards: get_unit_platforms(units, wildcards),
     log:
         "parabricks/fq2bam/{sample}_{type}.bam.log",

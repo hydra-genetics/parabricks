@@ -42,10 +42,10 @@ wildcard_constraints:
     unit="N|T|R",
 
 
-def get_num_gpus(wildcards):
-    gres = config.get("fq2bam", "gpu:1").get("gres", "gpu:1").split(",")
+def get_num_gpus(rule, wildcards):
+    gres = config.get(rule, {"gres": "gpu:1"}).get("gres", "--gres gpu:1").removeprefix("--gres ")
     gres_dict = dict()
-    for item in gres:
+    for item in gres.split(","):
         items = item.split(":")
         gres_dict[items[0]] = items[1]
     return gres_dict["gpu"]

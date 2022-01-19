@@ -14,7 +14,7 @@ rule mutectcaller_tn:
     output:
         vcf="parabricks/mutectcaller/{sample}.vcf",
     params:
-        num_gpus=get_num_gpus,
+        num_gpus=lambda wildcards: get_num_gpus("mutectcaller", wildcards),
     log:
         "parabricks/mutectcaller/{sample}.vcf.log",
     benchmark:

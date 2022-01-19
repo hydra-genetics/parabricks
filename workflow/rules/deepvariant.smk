@@ -11,7 +11,7 @@ rule deepvariant:
     output:
         vcf="parabricks/deepvariant/{sample}.vcf",
     params:
-        num_gpus=get_num_gpus,
+        num_gpus=lambda wildcards: get_num_gpus("deepvariant", wildcards),
     log:
         "parabricks/deepvariant/{sample}.vcf.log",
     benchmark:
