@@ -43,7 +43,7 @@ wildcard_constraints:
 
 
 def get_num_gpus(rule, wildcards):
-    gres = config.get(rule, {"gres": "gpu:1"}).get("gres", "--gres gpu:1").removeprefix("--gres ")
+    gres = config.get(rule, {"gres": "gpu:1"}).get("gres", "--gres gpu:1")[len("--gres "):]
     gres_dict = dict()
     for item in gres.split(","):
         items = item.split(":")
