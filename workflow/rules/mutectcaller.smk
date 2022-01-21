@@ -7,8 +7,10 @@ __license__ = "GPL-3"
 rule mutectcaller_tn:
     input:
         bam_t="parabricks/fq2bam/{sample}_T.bam",
+        bai_t="parabricks/fq2bam/{sample}_T.bam.bai",
         recal_t="parabricks/fq2bam/{sample}_T.txt",
         bam_n="parabricks/fq2bam/{sample}_N.bam",
+        bai_n="parabricks/fq2bam/{sample}_N.bam.bai",
         recal_n="parabricks/fq2bam/{sample}_N.txt",
         fasta=config["reference"]["fasta"],
     output:

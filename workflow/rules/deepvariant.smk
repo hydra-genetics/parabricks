@@ -7,6 +7,7 @@ __license__ = "GPL-3"
 rule deepvariant:
     input:
         bam="parabricks/fq2bam/{sample}_N.bam",
+        bai="parabricks/fq2bam/{sample}_N.bam.bai",
         fasta=config["reference"]["fasta"],
     output:
         vcf="parabricks/deepvariant/{sample}.vcf",

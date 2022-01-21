@@ -12,6 +12,7 @@ rule fq2bam:
         sites=config["reference"]["sites"],
     output:
         bam="parabricks/fq2bam/{sample}_{type}.bam",
+        bai="parabricks/fq2bam/{sample}_{type}.bam.bai",
         metrics="parabricks/fq2bam/{sample}_{type}.metrics",
         recal="parabricks/fq2bam/{sample}_{type}.txt",
     params:
