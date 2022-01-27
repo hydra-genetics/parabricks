@@ -43,7 +43,7 @@ rule fq2bam:
         "--in-fq {input.fastq1} {input.fastq2} "
         "--knownSites {input.sites} "
         "--read-group-sm {wildcards.sample}_{wildcards.type} "
-        "--read-group-id-prefix {wildcards.sample} "
+        "--read-group-id-prefix {wildcards.sample}_{wildcards.type} "
         "--read-group-pl {params.platform} "
         "--num-gpus {params.num_gpus} "
         "--out-bam {output.bam} "
