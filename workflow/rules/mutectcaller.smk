@@ -7,14 +7,16 @@ __license__ = "GPL-3"
 rule mutectcaller_tn:
     input:
         bam_t="parabricks/fq2bam/{sample}_T.bam",
+        bai_t="parabricks/fq2bam/{sample}_T.bam.bai",
         recal_t="parabricks/fq2bam/{sample}_T.txt",
         bam_n="parabricks/fq2bam/{sample}_N.bam",
+        bai_n="parabricks/fq2bam/{sample}_N.bam.bai",
         recal_n="parabricks/fq2bam/{sample}_N.txt",
         fasta=config["reference"]["fasta"],
     output:
         vcf="parabricks/mutectcaller/{sample}.vcf",
     params:
-        num_gpus=get_num_gpus,
+        num_gpus=lambda wildcards: get_num_gpus("mutectcaller", wildcards),
     log:
         "parabricks/mutectcaller/{sample}.vcf.log",
     benchmark:

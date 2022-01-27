@@ -7,11 +7,12 @@ __license__ = "GPL-3"
 rule deepvariant:
     input:
         bam="parabricks/fq2bam/{sample}_N.bam",
+        bai="parabricks/fq2bam/{sample}_N.bam.bai",
         fasta=config["reference"]["fasta"],
     output:
         vcf="parabricks/deepvariant/{sample}.vcf",
     params:
-        num_gpus=get_num_gpus,
+        num_gpus=lambda wildcards: get_num_gpus("deepvariant", wildcards),
     log:
         "parabricks/deepvariant/{sample}.vcf.log",
     benchmark:

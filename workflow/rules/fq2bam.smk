@@ -12,10 +12,11 @@ rule fq2bam:
         sites=config["reference"]["sites"],
     output:
         bam="parabricks/fq2bam/{sample}_{type}.bam",
+        bai="parabricks/fq2bam/{sample}_{type}.bam.bai",
         metrics="parabricks/fq2bam/{sample}_{type}.metrics",
         recal="parabricks/fq2bam/{sample}_{type}.txt",
     params:
-        num_gpus=get_num_gpus,
+        num_gpus=lambda wildcards: get_num_gpus("fq2bam", wildcards),
         platform=lambda wildcards: get_unit_platforms(units, wildcards),
     log:
         "parabricks/fq2bam/{sample}_{type}.bam.log",
@@ -41,7 +42,7 @@ rule fq2bam:
         "--ref {input.fasta} "
         "--in-fq {input.fastq1} {input.fastq2} "
         "--knownSites {input.sites} "
-        "--read-group-sm {wildcards.sample} "
+        "--read-group-sm {wildcards.sample}_{wildcards.type} "
         "--read-group-id-prefix {wildcards.sample} "
         "--read-group-pl {params.platform} "
         "--num-gpus {params.num_gpus} "
