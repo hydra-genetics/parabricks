@@ -36,6 +36,7 @@ rule rna_fq2bam:
         "{rule}: splice-aware alignment with parabricks for prealignment/merged/{wildcards.sample}_{wildcards.type}_fastq1/2.fastq.gz"
     shell:
         "pbrun rna_fq2bam "
+        "{params.extra} "
         "--genome-lib-dir {input.genome_dir} "
         "--in-fq {input.fastq1} {input.fastq2} "
         "--read-group-sm {wildcards.sample}_{wildcards.type} "
