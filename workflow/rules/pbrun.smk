@@ -4,7 +4,7 @@ __email__ = "martin.rippin@scilifelab.uu.se"
 __license__ = "GPL-3"
 
 
-rule rna_fq2bam:
+rule pbrun_rna_fq2bam:
     input:
         fastq1="prealignment/merged/{sample}_{type}_fastq1.fastq.gz",
         fastq2="prealignment/merged/{sample}_{type}_fastq2.fastq.gz",
