@@ -1,3 +1,4 @@
 sample	type	platform	run	lane	barcode
 NA12878	T	NovaSeq	1	1	ACGGAACA
 NA12878	N	NovaSeq	1	1	ACGGAACA
+NA12878	R	NovaSeq	1	1	ACGGAACA
