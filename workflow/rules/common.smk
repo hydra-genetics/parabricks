@@ -52,6 +52,20 @@ def get_num_gpus(rule, wildcards):
 
 
 def compile_output_list(wildcards):
+    files = {
+        "deepvariant": [
+            ".vcf",
+        ],
+        "mutectcaller": [
+            ".vcf",
+        ],
+        "rna_fq2bam": [
+            "_R.bam",
+        ],
+    }
     return [
-        "parabricks/%s/%s.vcf" % (tool, sample) for tool in ["deepvariant", "mutectcaller"] for sample in get_samples(samples)
+        "parabricks/%s/%s%s" % (prefix, sample, suffix)
+        for prefix in files.keys()
+        for sample in get_samples(samples)
+        for suffix in files[prefix]
     ]

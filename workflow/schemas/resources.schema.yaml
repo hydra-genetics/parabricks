@@ -96,5 +96,27 @@ properties:
         type: string
         description: max execution time for a 'mutectcaller' rule
 
+  rna_fq2bam:
+    type: object
+    properties:
+      gres:
+        type: string
+        description: generic resource scheduling for a 'rna_fq2bam' rule
+      mem_mb:
+        type: integer
+        description: memory used for a 'rna_fq2bam' rule
+      mem_per_cpu:
+        type: integer
+        description: memory used per cpu for a 'rna_fq2bam' rule
+      partition:
+        type: string
+        description: partition to use on the cluser for a 'rna_fq2bam' rule
+      threads:
+        type: integer
+        description: number of threads that will be used by a 'rna_fq2bam' rule
+      time:
+        type: string
+        description: max execution time for a 'rna_fq2bam' rule
+
   required:
     - default_resources

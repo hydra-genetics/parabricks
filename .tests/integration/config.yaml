@@ -4,4 +4,5 @@ units: "units.tsv"
 
 reference:
   fasta: "reference/reference.fasta"
+  genome_dir: "reference/"
   sites: "reference/sites.list"
