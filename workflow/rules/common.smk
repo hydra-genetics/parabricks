@@ -54,7 +54,7 @@ def get_in_fq(wildcards):
     input_list = []
     for unit in get_units(units, wildcards, wildcards.type):
         prefix = "prealignment/fastp_pe/{}_{}_{}_{}".format(unit.sample, unit.run, unit.lane, unit.type)
-        input_unit ="{}_fastq1.fastq.gz {}_fastq2.fastq.gz {}".format(
+        input_unit = "{}_fastq1.fastq.gz {}_fastq2.fastq.gz {}".format(
             prefix,
             prefix,
             "'@RG\\tID:{}\\tSM:{}\\tPL:{}\\tPU:{}'".format(
@@ -62,7 +62,7 @@ def get_in_fq(wildcards):
                 "{}_{}".format(unit.sample, unit.type),
                 unit.platform,
                 "{}.{}.{}".format(unit.run, unit.lane, unit.barcode),
-            )
+            ),
         )
         input_list.append(input_unit)
     return " --in-fq ".join(input_list)
