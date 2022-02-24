@@ -57,11 +57,12 @@ def get_in_fq(wildcards):
         input_unit = "{}_fastq1.fastq.gz {}_fastq2.fastq.gz {}".format(
             prefix,
             prefix,
-            "'@RG\\tID:{}\\tSM:{}\\tPL:{}\\tPU:{}'".format(
+            "'@RG\\tID:{}\\tSM:{}\\tPL:{}\\tPU:{}\\tLB:{}'".format(
                 "{}.{}".format(unit.sample, unit.lane),
                 "{}_{}".format(unit.sample, unit.type),
                 unit.platform,
                 "{}.{}.{}".format(unit.run, unit.lane, unit.barcode),
+                "{}_{}".format(unit.sample, unit.type),
             ),
         )
         input_list.append(input_unit)
