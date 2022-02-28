@@ -42,6 +42,33 @@ wildcard_constraints:
     unit="N|T|R",
 
 
+def get_fq2bam_input(units, wildcards):
+    return expand(
+        "prealignment/fastp_pe/{{sample}}_{run_lane}_{{type}}_{read}.fastq.gz",
+        run_lane=["{}_{}".format(unit.run, unit.lane) for unit in get_units(units, wildcards, wildcards.type)],
+        read=["fastq1", "fastq2"],
+    )
+
+
+def get_in_fq(wildcards):
+    input_list = []
+    for unit in get_units(units, wildcards, wildcards.type):
+        prefix = "prealignment/fastp_pe/{}_{}_{}_{}".format(unit.sample, unit.run, unit.lane, unit.type)
+        input_unit = "{}_fastq1.fastq.gz {}_fastq2.fastq.gz {}".format(
+            prefix,
+            prefix,
+            "'@RG\\tID:{}\\tSM:{}\\tPL:{}\\tPU:{}\\tLB:{}'".format(
+                "{}.{}".format(unit.sample, unit.lane),
+                "{}_{}".format(unit.sample, unit.type),
+                unit.platform,
+                "{}.{}.{}".format(unit.run, unit.lane, unit.barcode),
+                "{}_{}".format(unit.sample, unit.type),
+            ),
+        )
+        input_list.append(input_unit)
+    return " --in-fq ".join(input_list)
+
+
 def get_num_gpus(rule, wildcards):
     gres = config.get(rule, {"gres": "--gres=gpu:1"}).get("gres", "--gres=gpu:1")[len("--gres=") :]
     gres_dict = dict()

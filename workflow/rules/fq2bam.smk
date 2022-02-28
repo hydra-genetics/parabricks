@@ -6,18 +6,17 @@ __license__ = "GPL-3"
 
 rule fq2bam:
     input:
-        fastq1="prealignment/merged/{sample}_{type}_fastq1.fastq.gz",
-        fastq2="prealignment/merged/{sample}_{type}_fastq2.fastq.gz",
+        fastq=lambda wildcards: get_fq2bam_input(units, wildcards),
         fasta=config["reference"]["fasta"],
         sites=config["reference"]["sites"],
     output:
-        bam="parabricks/fq2bam/{sample}_{type}.bam",
-        bai="parabricks/fq2bam/{sample}_{type}.bam.bai",
+        bam=temp("parabricks/fq2bam/{sample}_{type}.bam"),
+        bai=temp("parabricks/fq2bam/{sample}_{type}.bam.bai"),
         metrics="parabricks/fq2bam/{sample}_{type}.metrics",
         recal="parabricks/fq2bam/{sample}_{type}.txt",
     params:
+        in_fq=get_in_fq,
         num_gpus=lambda wildcards: get_num_gpus("fq2bam", wildcards),
-        platform=lambda wildcards: get_unit_platforms(units, wildcards),
     log:
         "parabricks/fq2bam/{sample}_{type}.bam.log",
     benchmark:
@@ -34,17 +33,14 @@ rule fq2bam:
         threads=config.get("fq2bam", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("fq2bam", {}).get("time", config["default_resources"]["time"]),
     conda:
-        "../envs/fq2bam.yaml"
+        "../envs/pbrun.yaml"
     message:
         "{rule}: Align and mark duplicates for {wildcards.sample}_{wildcards.type} with parabricks"
     shell:
         "pbrun fq2bam "
         "--ref {input.fasta} "
-        "--in-fq {input.fastq1} {input.fastq2} "
+        "--in-fq {params.in_fq} "
         "--knownSites {input.sites} "
-        "--read-group-sm {wildcards.sample}_{wildcards.type} "
-        "--read-group-id-prefix {wildcards.sample}_{wildcards.type} "
-        "--read-group-pl {params.platform} "
         "--num-gpus {params.num_gpus} "
         "--out-bam {output.bam} "
         "--out-duplicate-metrics {output.metrics} "
