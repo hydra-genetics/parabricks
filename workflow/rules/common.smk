@@ -83,9 +83,7 @@ def compile_output_list(wildcards):
         "deepvariant": [
             ".vcf",
         ],
-        "mutectcaller": [
-            ".vcf",
-        ],
+        "mutectcaller": [".vcf", "_T.vcf"],
         "rna_fq2bam": [
             "_R.bam",
         ],
