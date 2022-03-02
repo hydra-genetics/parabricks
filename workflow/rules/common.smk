@@ -85,6 +85,7 @@ def compile_output_list(wildcards):
         ],
         "mutectcaller": [
             ".vcf",
+            "_T.vcf"
         ],
         "rna_fq2bam": [
             "_R.bam",
