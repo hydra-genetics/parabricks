@@ -31,7 +31,7 @@ validate(samples, schema="../schemas/samples.schema.yaml")
 
 ### Read and validate units file
 
-units = pandas.read_table(config["units"], dtype=str).set_index(["sample", "type", "run", "lane"], drop=False).sort_index()
+units = pandas.read_table(config["units"], dtype=str).set_index(["sample", "type", "flowcell", "lane"], drop=False).sort_index()
 validate(units, schema="../schemas/units.schema.yaml")
 
 ### Set wildcard constraints
@@ -44,8 +44,8 @@ wildcard_constraints:
 
 def get_fq2bam_input(units, wildcards):
     return expand(
-        "prealignment/fastp_pe/{{sample}}_{run_lane}_{{type}}_{read}.fastq.gz",
-        run_lane=["{}_{}".format(unit.run, unit.lane) for unit in get_units(units, wildcards, wildcards.type)],
+        "prealignment/fastp_pe/{{sample}}_{flowcell_lane}_{{type}}_{read}.fastq.gz",
+        flowcell_lane=["{}_{}".format(unit.flowcell, unit.lane) for unit in get_units(units, wildcards, wildcards.type)],
         read=["fastq1", "fastq2"],
     )
 
@@ -53,7 +53,7 @@ def get_fq2bam_input(units, wildcards):
 def get_in_fq(wildcards):
     input_list = []
     for unit in get_units(units, wildcards, wildcards.type):
-        prefix = "prealignment/fastp_pe/{}_{}_{}_{}".format(unit.sample, unit.run, unit.lane, unit.type)
+        prefix = "prealignment/fastp_pe/{}_{}_{}_{}".format(unit.sample, unit.flowcell, unit.lane, unit.type)
         input_unit = "{}_fastq1.fastq.gz {}_fastq2.fastq.gz {}".format(
             prefix,
             prefix,
@@ -61,7 +61,7 @@ def get_in_fq(wildcards):
                 "{}.{}".format(unit.sample, unit.lane),
                 "{}_{}".format(unit.sample, unit.type),
                 unit.platform,
-                "{}.{}.{}".format(unit.run, unit.lane, unit.barcode),
+                "{}.{}.{}".format(unit.flowcell, unit.lane, unit.barcode),
                 "{}_{}".format(unit.sample, unit.type),
             ),
         )
