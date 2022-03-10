@@ -1,9 +1,8 @@
----
-
 resources: "resources.yaml"
 samples: "samples.tsv"
 units: "units.tsv"
 
 reference:
   fasta: ""
+  genome_dir: ""
   sites: ""

@@ -1,34 +1,22 @@
 default_resources:
-  mem_mb: 4800
-  mem_per_cpu: 4800
+  mem_mb: 1024
+  mem_per_cpu: 1024
   partition: "core"
   threads: 1
   time: "12:00:00"
 
 deepvariant:
-  gres: "--gres gpu:1"
-  mem_mb: 48000
-  mem_per_cpu: 4800
-  partition: "GPU"
-  threads: 10
+  gres: "--gres=gpu:1"
+  partition: "gpu"
 
 fq2bam:
-  gres: "--gres gpu:1"
-  mem_mb: 48000
-  mem_per_cpu: 4800
-  partition: "GPU"
-  threads: 10
+  gres: "--gres=gpu:1"
+  partition: "gpu"
 
 mutectcaller:
-  gres: "--gres gpu:1"
-  mem_mb: 48000
-  mem_per_cpu: 4800
-  partition: "GPU"
-  threads: 10
+  gres: "--gres=gpu:1"
+  partition: "gpu"
 
 rna_fq2bam:
-  gres: "--gres gpu:1"
-  mem_mb: 48000
-  mem_per_cpu: 4800
-  partition: "GPU"
-  threads: 10
+  gres: "--gres=gpu:1"
+  partition: "gpu"
