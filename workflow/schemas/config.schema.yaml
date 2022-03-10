@@ -19,46 +19,46 @@ properties:
         description: path to reference fasta file
       genome_dir:
         type: string
-        description: path to reference directory
+        description: path to STAR reference directory
       sites:
         type: string
         description: path to known sites list file
     required:
       - fasta
       - sites
-  required:
-    - samples
-    - units
-    - resources
-    - reference
-
   deepvariant:
     type: object
+    description: parameters for deepvariant
     properties:
       benchmark_repeats:
         type: integer
-        description: set number of times benchmark should be repeated for deepvariant
-
+        description: set number of times benchmark should be repeated
   fq2bam:
     type: object
+    description: parameters for fq2bam
     properties:
       benchmark_repeats:
         type: integer
-        description: set number of times benchmark should be repeated for fq2bam
-
+        description: set number of times benchmark should be repeated
   mutectcaller:
     type: object
+    description: parameters for mutectcaller
     properties:
       benchmark_repeats:
         type: integer
-        description: set number of times benchmark should be repeated for mutectcaller
-
+        description: set number of times benchmark should be repeated
   rna_fq2bam:
     type: object
+    description: parameters for rna_fq2bam
     properties:
       benchmark_repeats:
         type: integer
-        description: set number of times benchmark should be repeated for rna_fq2bam
+        description: set number of times benchmark should be repeated
       extra:
         type: string
-        description: parameters that should be forwarded to rna_fq2bam
+        description: parameters that should be forwarded
+required:
+  - reference
+  - resources
+  - samples
+  - units

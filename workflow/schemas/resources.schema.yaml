@@ -5,118 +5,114 @@ properties:
   default_resources:
     type: object
     properties:
-      gres:
-        type: string
-        description: default generic resource scheduling for a rule
       mem_mb:
         type: integer
-        description: default memory used for a rule
+        description: max memory in MB to be available by default
       mem_per_cpu:
         type: integer
-        description: default memory used per cpu for a rule
+        description: memory in MB used per cpu by default
       partition:
         type: string
-        description: default partition to use on the cluser for a rule
+        description: partition to use on cluster by default
       threads:
         type: integer
-        description: default number of threads that will be used by a rule
+        description: number of threads to be available by default
       time:
         type: string
-        description: default max execution time for a rule
+        description: max execution time by default
     required:
       - mem_mb
       - mem_per_cpu
       - partition
       - threads
       - time
-
   deepvariant:
     type: object
+    description: resource definitions for deepvariant
     properties:
       gres:
         type: string
-        description: generic resource scheduling for a 'deepvariant' rule
+        description: generic resource scheduling
       mem_mb:
         type: integer
-        description: memory used for a 'deepvariant' rule
+        description: max memory in MB to be available
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for a 'deepvariant' rule
+        description: memory in MB used per cpu
       partition:
         type: string
-        description: partition to use on the cluser for a 'deepvariant' rule
+        description: partition to use on cluster
       threads:
         type: integer
-        description: number of threads that will be used by a 'deepvariant' rule
+        description: number of threads to be available
       time:
         type: string
-        description: max execution time for a 'deepvariant' rule
-
+        description: max execution time
   fq2bam:
     type: object
+    description: resource definitions for fq2bam
     properties:
       gres:
         type: string
-        description: generic resource scheduling for a 'fq2bam' rule
+        description: generic resource scheduling
       mem_mb:
         type: integer
-        description: memory used for a 'fq2bam' rule
+        description: max memory in MB to be available
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for a 'fq2bam' rule
+        description: memory in MB used per cpu
       partition:
         type: string
-        description: partition to use on the cluser for a 'fq2bam' rule
+        description: partition to use on cluster
       threads:
         type: integer
-        description: number of threads that will be used by a 'fq2bam' rule
+        description: number of threads to be available
       time:
         type: string
-        description: max execution time for a 'fq2bam' rule
-
+        description: max execution time
   mutectcaller:
     type: object
+    description: resource definitions for mutectcaller
     properties:
       gres:
         type: string
-        description: generic resource scheduling for a 'mutectcaller' rule
+        description: generic resource scheduling
       mem_mb:
         type: integer
-        description: memory used for a 'mutectcaller' rule
+        description: max memory in MB to be available
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for a 'mutectcaller' rule
+        description: memory in MB used per cpu
       partition:
         type: string
-        description: partition to use on the cluser for a 'mutectcaller' rule
+        description: partition to use on cluster
       threads:
         type: integer
-        description: number of threads that will be used by a 'mutectcaller' rule
+        description: number of threads to be available
       time:
         type: string
-        description: max execution time for a 'mutectcaller' rule
-
+        description: max execution time
   rna_fq2bam:
     type: object
+    description: resource definitions for rna_fq2bam
     properties:
       gres:
         type: string
-        description: generic resource scheduling for a 'rna_fq2bam' rule
+        description: generic resource scheduling
       mem_mb:
         type: integer
-        description: memory used for a 'rna_fq2bam' rule
+        description: max memory in MB to be available
       mem_per_cpu:
         type: integer
-        description: memory used per cpu for a 'rna_fq2bam' rule
+        description: memory in MB used per cpu
       partition:
         type: string
-        description: partition to use on the cluser for a 'rna_fq2bam' rule
+        description: partition to use on cluster
       threads:
         type: integer
-        description: number of threads that will be used by a 'rna_fq2bam' rule
+        description: number of threads to be available
       time:
         type: string
-        description: max execution time for a 'rna_fq2bam' rule
-
+        description: max execution time
   required:
     - default_resources
