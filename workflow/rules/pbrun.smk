@@ -14,7 +14,7 @@ rule pbrun_rna_fq2bam:
     params:
         extra=config.get("rna_fq2bam", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("rna_fq2bam", wildcards),
-        platform=lambda wildcards: get_unit_platforms(units, wildcards),
+        platform=lambda wildcards: get_platforms(units, wildcards),
     log:
         "parabricks/rna_fq2bam/{sample}_{type}.bam.log",
     benchmark:
