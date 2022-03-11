@@ -24,13 +24,11 @@ In order to use this module, the following dependencies are required:
 
 [![hydra-genetics](https://img.shields.io/badge/hydragenetics-v0.9.0-blue)](https://github.com/hydra-genetics/)
 [![pandas](https://img.shields.io/badge/pandas-1.3.1-blue)](https://pandas.pydata.org/)
-[![parabricks](https://img.shields.io/badge/pandas-3.7-blue)](https://docs.nvidia.com/clara/parabricks/3.7.0/index.html)
+[![parabricks](https://img.shields.io/badge/parabricks-3.7-blue)](https://docs.nvidia.com/clara/parabricks/3.7.0/index.html)
 [![python](https://img.shields.io/badge/python-3.8-blue)](https://www.python.org/)
 [![snakemake](https://img.shields.io/badge/snakemake-6.10.0-blue)](https://snakemake.readthedocs.io/en/stable/)
 
 ## :school_satchel: Preparations
-
-### Sample data
 
 ### Sample and unit data
 
