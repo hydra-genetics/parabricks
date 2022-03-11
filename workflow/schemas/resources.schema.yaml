@@ -26,9 +26,9 @@ properties:
       - partition
       - threads
       - time
-  deepvariant:
+  pbrun_deepvariant:
     type: object
-    description: resource definitions for deepvariant
+    description: resource definitions for pbrun_deepvariant
     properties:
       gres:
         type: string
@@ -48,9 +48,9 @@ properties:
       time:
         type: string
         description: max execution time
-  fq2bam:
+  pbrun_fq2bam:
     type: object
-    description: resource definitions for fq2bam
+    description: resource definitions for pbrun_fq2bam
     properties:
       gres:
         type: string
@@ -70,9 +70,9 @@ properties:
       time:
         type: string
         description: max execution time
-  mutectcaller:
+  pbrun_mutectcaller_t:
     type: object
-    description: resource definitions for mutectcaller
+    description: resource definitions for pbrun_mutectcaller_t
     properties:
       gres:
         type: string
@@ -92,9 +92,31 @@ properties:
       time:
         type: string
         description: max execution time
-  rna_fq2bam:
+  pbrun_mutectcaller_tn:
     type: object
-    description: resource definitions for rna_fq2bam
+    description: resource definitions for pbrun_mutectcaller_tn
+    properties:
+      gres:
+        type: string
+        description: generic resource scheduling
+      mem_mb:
+        type: integer
+        description: max memory in MB to be available
+      mem_per_cpu:
+        type: integer
+        description: memory in MB used per cpu
+      partition:
+        type: string
+        description: partition to use on cluster
+      threads:
+        type: integer
+        description: number of threads to be available
+      time:
+        type: string
+        description: max execution time
+  pbrun_rna_fq2bam:
+    type: object
+    description: resource definitions for pbrun_rna_fq2bam
     properties:
       gres:
         type: string

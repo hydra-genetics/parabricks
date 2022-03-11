@@ -80,11 +80,12 @@ def get_num_gpus(rule, wildcards):
 
 def compile_output_list(wildcards):
     files = {
-        "deepvariant": [
+        "pbrun_deepvariant": [
             ".vcf",
         ],
-        "mutectcaller": [".vcf", "_T.vcf"],
-        "rna_fq2bam": [
+        "pbrun_mutectcaller_t": ["_T.vcf"],
+        "pbrun_mutectcaller_tn": [".vcf"],
+        "pbrun_rna_fq2bam": [
             "_R.bam",
         ],
     }
