@@ -42,7 +42,7 @@ wildcard_constraints:
     unit="N|T|R",
 
 
-def get_fq2bam_input(units, wildcards):
+def get_input_fastq(units, wildcards):
     return expand(
         "prealignment/fastp_pe/{{sample}}_{flowcell_lane}_{{type}}_{read}.fastq.gz",
         flowcell_lane=["{}_{}".format(unit.flowcell, unit.lane) for unit in get_units(units, wildcards, wildcards.type)],

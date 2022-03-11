@@ -175,20 +175,20 @@ rule pbrun_mutectcaller_tn:
         "--in-normal-recal-file {input.recal_n} "
         "--num-gpus {params.num_gpus} "
         "--out-vcf {output.vcf} "
+        "{params.extra} "
         "--tmp-dir parabricks/pbrun_mutectcaller_tn/{wildcards.sample} &> {log}"
 
 
 rule pbrun_rna_fq2bam:
     input:
-        fastq1="prealignment/merged/{sample}_{type}_fastq1.fastq.gz",
-        fastq2="prealignment/merged/{sample}_{type}_fastq2.fastq.gz",
+        fastq=lambda wildcards: get_input_fastq(units, wildcards),
         genome_dir=config["reference"]["genome_dir"],
     output:
         bam=temp("parabricks/pbrun_rna_fq2bam/{sample}_{type}.bam"),
     params:
-        extra=config.get("rna_fq2bam", {}).get("extra", ""),
-        num_gpus=lambda wildcards: get_num_gpus("rna_fq2bam", wildcards),
-        platform=lambda wildcards: get_platforms(units, wildcards),
+        extra=config.get("pbrun_rna_fq2bam", {}).get("extra", ""),
+        in_fq=get_in_fq,
+        num_gpus=lambda wildcards: get_num_gpus("pbrun_rna_fq2bam", wildcards),
     log:
         "parabricks/pbrun_rna_fq2bam/{sample}_{type}.bam.log",
     benchmark:
@@ -212,10 +212,7 @@ rule pbrun_rna_fq2bam:
         "pbrun rna_fq2bam "
         "{params.extra} "
         "--genome-lib-dir {input.genome_dir} "
-        "--in-fq {input.fastq1} {input.fastq2} "
-        "--read-group-sm {wildcards.sample}_{wildcards.type} "
-        "--read-group-id-prefix {wildcards.sample}_{wildcards.type} "
-        "--read-group-pl {params.platform} "
+        "--in-fq {params.in_fq} "
         "--num-gpus {params.num_gpus} "
         "--output-dir parabricks/pbrun_rna_fq2bam/ "
         "--out-bam {output.bam} "
