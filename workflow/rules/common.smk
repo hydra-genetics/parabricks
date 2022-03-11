@@ -42,7 +42,7 @@ wildcard_constraints:
     unit="N|T|R",
 
 
-def get_fq2bam_input(units, wildcards):
+def get_input_fastq(units, wildcards):
     return expand(
         "prealignment/fastp_pe/{{sample}}_{flowcell_lane}_{{type}}_{read}.fastq.gz",
         flowcell_lane=["{}_{}".format(unit.flowcell, unit.lane) for unit in get_units(units, wildcards, wildcards.type)],
@@ -80,11 +80,12 @@ def get_num_gpus(rule, wildcards):
 
 def compile_output_list(wildcards):
     files = {
-        "deepvariant": [
+        "pbrun_deepvariant": [
             ".vcf",
         ],
-        "mutectcaller": [".vcf", "_T.vcf"],
-        "rna_fq2bam": [
+        "pbrun_mutectcaller_t": ["_T.vcf"],
+        "pbrun_mutectcaller_tn": [".vcf"],
+        "pbrun_rna_fq2bam": [
             "_R.bam",
         ],
     }

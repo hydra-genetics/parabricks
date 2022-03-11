@@ -26,30 +26,49 @@ properties:
     required:
       - fasta
       - sites
-  deepvariant:
+  pbrun_deepvariant:
     type: object
-    description: parameters for deepvariant
+    description: parameters for pbrun_deepvariant
     properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-  fq2bam:
+      extra:
+        type: string
+        description: parameters that should be forwarded
+  pbrun_fq2bam:
     type: object
-    description: parameters for fq2bam
+    description: parameters for pbrun_fq2bam
     properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-  mutectcaller:
+      extra:
+        type: string
+        description: parameters that should be forwarded
+  pbrun_mutectcaller_t:
     type: object
-    description: parameters for mutectcaller
+    description: parameters for pbrun_mutectcaller_t
     properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
-  rna_fq2bam:
+      extra:
+        type: string
+        description: parameters that should be forwarded
+  pbrun_mutectcaller_tn:
     type: object
-    description: parameters for rna_fq2bam
+    description: parameters for pbrun_mutectcaller_tn
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      extra:
+        type: string
+        description: parameters that should be forwarded
+  pbrun_rna_fq2bam:
+    type: object
+    description: parameters for pbrun_rna_fq2bam
     properties:
       benchmark_repeats:
         type: integer

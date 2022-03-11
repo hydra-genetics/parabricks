@@ -5,18 +5,22 @@ default_resources:
   threads: 1
   time: "12:00:00"
 
-deepvariant:
+pbrun_deepvariant:
   gres: "--gres=gpu:1"
   partition: "gpu"
 
-fq2bam:
+pbrun_fq2bam:
   gres: "--gres=gpu:1"
   partition: "gpu"
 
-mutectcaller:
+pbrun_mutectcaller_t:
   gres: "--gres=gpu:1"
   partition: "gpu"
 
-rna_fq2bam:
+pbrun_mutectcaller_tn:
+  gres: "--gres=gpu:1"
+  partition: "gpu"
+
+pbrun_rna_fq2bam:
   gres: "--gres=gpu:1"
   partition: "gpu"
