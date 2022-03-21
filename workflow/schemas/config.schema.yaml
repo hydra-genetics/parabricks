@@ -2,18 +2,82 @@ $schema: "http://json-schema.org/draft-04/schema#"
 description: snakemake configuration file
 type: object
 properties:
-  samples:
-    type: string
-  units:
-    type: string
   resources:
     type: string
-    description: Path to resources.yaml file
-  default_container:
+    description: path to resources.yaml file
+  samples:
     type: string
-    description: name or path to a default docker/singularity container
-  required:
-    - samples
-    - units
-    - resources
-    - default_container
+    description: path to samples.tsv file
+  units:
+    type: string
+    description: path to units.tsv file
+  reference:
+    type: object
+    properties:
+      fasta:
+        type: string
+        description: path to reference fasta file
+      genome_dir:
+        type: string
+        description: path to STAR reference directory
+      sites:
+        type: string
+        description: path to known sites list file
+    required:
+      - fasta
+      - sites
+  pbrun_deepvariant:
+    type: object
+    description: parameters for pbrun_deepvariant
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      extra:
+        type: string
+        description: parameters that should be forwarded
+  pbrun_fq2bam:
+    type: object
+    description: parameters for pbrun_fq2bam
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      extra:
+        type: string
+        description: parameters that should be forwarded
+  pbrun_mutectcaller_t:
+    type: object
+    description: parameters for pbrun_mutectcaller_t
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      extra:
+        type: string
+        description: parameters that should be forwarded
+  pbrun_mutectcaller_tn:
+    type: object
+    description: parameters for pbrun_mutectcaller_tn
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      extra:
+        type: string
+        description: parameters that should be forwarded
+  pbrun_rna_fq2bam:
+    type: object
+    description: parameters for pbrun_rna_fq2bam
+    properties:
+      benchmark_repeats:
+        type: integer
+        description: set number of times benchmark should be repeated
+      extra:
+        type: string
+        description: parameters that should be forwarded
+required:
+  - reference
+  - resources
+  - samples
+  - units

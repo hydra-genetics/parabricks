@@ -1,2 +1,2 @@
-sample	type	platform	run	lane	fastq1	fastq2	adapter
-NA12878
+sample	type	platform	machine	flowcell	lane	barcode	fastq1	fastq2	adapter
+NA12878	N	NextSeq	N0001	AX51XABG	L001	ACGGAACA+ACGGAACA	path/fastq1	path/fastq2	ACGTGT,ACGTG
