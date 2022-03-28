@@ -58,7 +58,7 @@ def get_in_fq(wildcards):
             prefix,
             prefix,
             "'@RG\\tID:{}\\tSM:{}\\tPL:{}\\tPU:{}\\tLB:{}'".format(
-                "{}.{}".format(unit.sample, unit.lane),
+                "{}_{}.{}".format(unit.type, unit.sample, unit.lane),
                 "{}_{}".format(unit.sample, unit.type),
                 unit.platform,
                 "{}.{}.{}".format(unit.flowcell, unit.lane, unit.barcode),
