@@ -49,7 +49,9 @@ wildcard_constraints:
 def get_input_fastq(units, wildcards):
     return expand(
         "prealignment/fastp_pe/{{sample}}_{flowcell_lane_barcode}_{{type}}_{read}.fastq.gz",
-        flowcell_lane_barcode=["{}_{}_{}".format(unit.flowcell, unit.lane, unit.barcode) for unit in get_units(units, wildcards, wildcards.type)],
+        flowcell_lane_barcode=[
+            "{}_{}_{}".format(unit.flowcell, unit.lane, unit.barcode) for unit in get_units(units, wildcards, wildcards.type)
+        ],
         read=["fastq1", "fastq2"],
     )
 
