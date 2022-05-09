@@ -1,0 +1,15 @@
+resources: "resources.yaml"
+samples: "samples.tsv"
+units: "units.tsv"
+
+trimmer_software: "fastp_pe"
+
+default_container: "docker://hydragenetics/common:0.1.3"
+
+reference:
+  fasta: "reference/reference.fasta"
+  genome_dir: "reference/"
+  sites: "reference/sites.list"
+
+fastp_pe:
+  container: "docker://hydragenetics/fastp:0.20.1"
