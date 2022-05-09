@@ -24,9 +24,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.8
-      - name: Add conda to system path
-        run: |
-          echo $CONDA/bin >> $GITHUB_PATH
       - name: Install requirements.txt
         run: |
           pip install -r requirements.txt
@@ -34,10 +31,6 @@ jobs:
         run: |
           pip install -r requirements.test.txt
       - name: snakemake dry run
-        working-directory: .tests/compatibility
-        run: |
-          snakemake -n -s Snakefile -c
-      - name: snakemake dry run fastp_pe config
         working-directory: .tests/compatibility
         run: |
           snakemake -n -s Snakefile
