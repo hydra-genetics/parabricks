@@ -2,6 +2,7 @@
 
 #### Snakemake module containing an array of steps provided by the parabricks tookit
 
+![compatibility](https://github.com/hydra-genetics/parabricks/actions/workflows/compatibility.yaml/badge.svg?branch=develop)
 ![lint](https://github.com/hydra-genetics/parabricks/actions/workflows/lint.yaml/badge.svg?branch=develop)
 ![snakefmt](https://github.com/hydra-genetics/parabricks/actions/workflows/snakefmt.yaml/badge.svg?branch=develop)
 ![snakemake dry run](https://github.com/hydra-genetics/parabricks/actions/workflows/snakemake-dry-run.yaml/badge.svg?branch=develop)
@@ -80,6 +81,13 @@ module parabricks:
 
 use rule * from parabricks as parabricks_*
 ```
+
+### Compatibility
+
+Latest:
+ - prealignment:v0.2.0
+
+ See [COMPATIBLITY.md](../main/COMPATIBLITY.md) file for a complete list of module compatibility.
 
 ### Output files
 
