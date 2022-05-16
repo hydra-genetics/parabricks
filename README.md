@@ -2,8 +2,9 @@
 
 #### Snakemake module containing an array of steps provided by the parabricks tookit
 
-![Lint](https://github.com/hydra-genetics/parabricks/actions/workflows/lint.yaml/badge.svg?branch=develop)
-![Snakefmt](https://github.com/hydra-genetics/parabricks/actions/workflows/snakefmt.yaml/badge.svg?branch=develop)
+![compatibility](https://github.com/hydra-genetics/parabricks/actions/workflows/compatibility.yaml/badge.svg?branch=develop)
+![lint](https://github.com/hydra-genetics/parabricks/actions/workflows/lint.yaml/badge.svg?branch=develop)
+![snakefmt](https://github.com/hydra-genetics/parabricks/actions/workflows/snakefmt.yaml/badge.svg?branch=develop)
 ![snakemake dry run](https://github.com/hydra-genetics/parabricks/actions/workflows/snakemake-dry-run.yaml/badge.svg?branch=develop)
 
 [![License: GPL-3](https://img.shields.io/badge/License-GPL3-yellow.svg)](https://opensource.org/licenses/gpl-3.0.html)
@@ -22,7 +23,7 @@ use of read group information, add machine, flowcell and library specifics to
 
 In order to use this module, the following dependencies are required:
 
-[![hydra-genetics](https://img.shields.io/badge/hydragenetics-v0.9.0-blue)](https://github.com/hydra-genetics/)
+[![hydra-genetics](https://img.shields.io/badge/hydragenetics-v0.10.0-blue)](https://github.com/hydra-genetics/)
 [![pandas](https://img.shields.io/badge/pandas-1.3.1-blue)](https://pandas.pydata.org/)
 [![parabricks](https://img.shields.io/badge/parabricks-3.7-blue)](https://docs.nvidia.com/clara/parabricks/3.7.0/index.html)
 [![python](https://img.shields.io/badge/python-3.8-blue)](https://www.python.org/)
@@ -80,6 +81,13 @@ module parabricks:
 
 use rule * from parabricks as parabricks_*
 ```
+
+### Compatibility
+
+Latest:
+ - prealignment:v0.2.0
+
+ See [COMPATIBLITY.md](../main/COMPATIBLITY.md) file for a complete list of module compatibility.
 
 ### Output files
 

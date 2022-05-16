@@ -1,4 +1,4 @@
-name: Snakemake dry run
+name: Compatibility test
 
 on:
   push:
@@ -12,18 +12,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  snakemake-dry-run:
-    name: Run snakemake dry run
+  compatibility-test:
+    name: Run compatibility test
     runs-on: ubuntu-latest
     steps:
+      - name: Get branch names
+        id: branch-name
+        uses: tj-actions/branch-names@v5.2
       - uses: actions/checkout@v3
       - name: Set up Python 3.8
         uses: actions/setup-python@v3
         with:
           python-version: 3.8
-      - name: Add conda to system path
-        run: |
-          echo $CONDA/bin >> $GITHUB_PATH
       - name: Install requirements.txt
         run: |
           pip install -r requirements.txt
@@ -31,6 +31,6 @@ jobs:
         run: |
           pip install -r requirements.test.txt
       - name: snakemake dry run
-        working-directory: .tests/integration
+        working-directory: .tests/compatibility
         run: |
-          snakemake -n -s ../../workflow/Snakefile
+          snakemake -n -s Snakefile
