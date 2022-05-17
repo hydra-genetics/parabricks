@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.2.0](https://www.github.com/hydra-genetics/parabricks/compare/v0.1.0...v0.2.0) (2022-05-16)
+
+
+### Features
+
+* Add check for compatibility ([ac57f74](https://www.github.com/hydra-genetics/parabricks/commit/ac57f74d454a03a9222f71bc0e2f9e5fe7d48d6b))
+
+
+### Bug Fixes
+
+* added barcode ([f5a1cfb](https://www.github.com/hydra-genetics/parabricks/commit/f5a1cfb0367b58752c7449247885662aed2e6928))
+* barcode needed for unique id in read group ([abda323](https://www.github.com/hydra-genetics/parabricks/commit/abda3231e8d4ae3bf8aabdf2e70067cb14cffe93))
+* Remove unnecessary steps in dry run action ([b551660](https://www.github.com/hydra-genetics/parabricks/commit/b551660c4dac69d28b2426ea8f1a0217def0414e))
+
+
+### Documentation
+
+* Update README ([c8c4495](https://www.github.com/hydra-genetics/parabricks/commit/c8c4495090dd600fcca4addf21c27ad27d20b57a))
+
 ## 0.1.0 (2022-03-21)
 
 
