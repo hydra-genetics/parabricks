@@ -6,3 +6,8 @@ reference:
   fasta: "reference/reference.fasta"
   genome_dir: "reference/"
   sites: "reference/sites.list"
+
+
+pbrun_deepvariant:
+  deepvariant_model: "/beegfs-storage/data/parabricks/4.0.0-1/A30/wgs/deepvariant.eng"
+  extra: ""

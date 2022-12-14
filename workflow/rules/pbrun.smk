@@ -9,6 +9,7 @@ rule pbrun_deepvariant:
         bam="parabricks/pbrun_fq2bam/{sample}_N.bam",
         bai="parabricks/pbrun_fq2bam/{sample}_N.bam.bai",
         fasta=config["reference"]["fasta"],
+        model=config["pbrun_deepvariant"]["deepvariant_model"]
     output:
         vcf=temp("parabricks/pbrun_deepvariant/{sample}.vcf"),
     params:
@@ -31,6 +32,8 @@ rule pbrun_deepvariant:
         time=config.get("pbrun_deepvariant", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_deepvariant", {}).get("container", config["default_container"])
     message:
         "{rule}: call snp and small indels for {wildcards.sample} with parabricks"
     shell:
@@ -40,6 +43,7 @@ rule pbrun_deepvariant:
         "--num-gpus {params.num_gpus} "
         "--out-variants {output.vcf} "
         "{params.extra} "
+        "--pb-model-file {input.model} "
         "--tmp-dir parabricks/pbrun_deepvariant/{wildcards.sample} &> {log}"
 
 
@@ -74,6 +78,8 @@ rule pbrun_fq2bam:
         time=config.get("pbrun_fq2bam", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_fq2bam", {}).get("container", config["default_container"])
     message:
         "{rule}: align and mark duplicates for {input.fastq} with parabricks"
     shell:
@@ -117,6 +123,8 @@ rule pbrun_mutectcaller_t:
         time=config.get("pbrun_mutectcaller_t", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_mutectcaller_t", {}).get("container", config["default_container"])
     message:
         "{rule}: call snp and small indels for {wildcards.sample} tumor with parabricks"
     shell:
@@ -162,6 +170,8 @@ rule pbrun_mutectcaller_tn:
         time=config.get("pbrun_mutectcaller_tn", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_mutectcaller_tn", {}).get("container", config["default_container"])
     message:
         "{rule}: call snp and small indels for {wildcards.sample} tumor/normal with parabricks"
     shell:
@@ -206,6 +216,8 @@ rule pbrun_rna_fq2bam:
         time=config.get("pbrun_rna_fq2bam", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_rna_fq2bam", {}).get("container", config["default_container"])
     message:
         "{rule}: splice-aware alignment with parabricks for {input.fastq}"
     shell:
