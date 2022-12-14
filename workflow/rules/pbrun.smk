@@ -9,7 +9,7 @@ rule pbrun_deepvariant:
         bam="parabricks/pbrun_fq2bam/{sample}_N.bam",
         bai="parabricks/pbrun_fq2bam/{sample}_N.bam.bai",
         fasta=config["reference"]["fasta"],
-        model=config["pbrun_deepvariant"]["deepvariant_model"]
+        model=config["pbrun_deepvariant"]["deepvariant_model"],
     output:
         vcf=temp("parabricks/pbrun_deepvariant/{sample}.vcf"),
     params:

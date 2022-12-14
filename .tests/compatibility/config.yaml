@@ -13,3 +13,7 @@ reference:
 
 fastp_pe:
   container: "docker://hydragenetics/fastp:0.20.1"
+
+pbrun_deepvariant:
+  deepvariant_model: "deepvariant.eng"
+  extra: ""
