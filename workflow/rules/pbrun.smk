@@ -8,8 +8,8 @@ rule pbrun_deepvariant:
     input:
         bam="parabricks/pbrun_fq2bam/{sample}_N.bam",
         bai="parabricks/pbrun_fq2bam/{sample}_N.bam.bai",
-        fasta=config["reference"]["fasta"],
-        model=config["pbrun_deepvariant"]["deepvariant_model"],
+        fasta=config.get("reference", {}).get("fasta", ""),
+        model=config.get("pbrun_deepvariant", {}).get("deepvariant_model", ""),
     output:
         vcf=temp("parabricks/pbrun_deepvariant/{sample}.vcf"),
     params:
@@ -50,8 +50,8 @@ rule pbrun_deepvariant:
 rule pbrun_fq2bam:
     input:
         fastq=lambda wildcards: get_input_fastq(units, wildcards),
-        fasta=config["reference"]["fasta"],
-        sites=config["reference"]["sites"],
+        fasta=config.get("reference", {}).get("fasta", ""),
+        sites=config.get("reference", {}).get("sites", ""),
     output:
         bam=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam"),
         bai=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam.bai"),
@@ -100,7 +100,7 @@ rule pbrun_mutectcaller_t:
         bam_t="parabricks/pbrun_fq2bam/{sample}_T.bam",
         bai_t="parabricks/pbrun_fq2bam/{sample}_T.bam.bai",
         recal_t="parabricks/pbrun_fq2bam/{sample}_T.txt",
-        fasta=config["reference"]["fasta"],
+        fasta=config.get("reference", {}).get("fasta", ""),
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_t/{sample}_T.vcf"),
     params:
@@ -147,7 +147,7 @@ rule pbrun_mutectcaller_tn:
         bam_n="parabricks/pbrun_fq2bam/{sample}_N.bam",
         bai_n="parabricks/pbrun_fq2bam/{sample}_N.bam.bai",
         recal_n="parabricks/pbrun_fq2bam/{sample}_N.txt",
-        fasta=config["reference"]["fasta"],
+        fasta=config.get("reference", {}).get("fasta", ""),
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_tn/{sample}.vcf"),
     params:
@@ -192,7 +192,7 @@ rule pbrun_mutectcaller_tn:
 rule pbrun_rna_fq2bam:
     input:
         fastq=lambda wildcards: get_input_fastq(units, wildcards),
-        genome_dir=config["reference"]["genome_dir"],
+        genome_dir=config.get("reference", {}).get("genome_dir", ""),
     output:
         bam=temp("parabricks/pbrun_rna_fq2bam/{sample}_{type}.bam"),
     params:
