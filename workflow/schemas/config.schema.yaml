@@ -33,9 +33,14 @@ properties:
       benchmark_repeats:
         type: integer
         description: set number of times benchmark should be repeated
+      deepvariant_model:
+        type: string
+        description: deepvariant model file
       extra:
         type: string
         description: parameters that should be forwarded
+    required:
+      - deepvariant_model
   pbrun_fq2bam:
     type: object
     description: parameters for pbrun_fq2bam

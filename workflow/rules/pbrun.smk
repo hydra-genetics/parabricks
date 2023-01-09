@@ -8,7 +8,8 @@ rule pbrun_deepvariant:
     input:
         bam="parabricks/pbrun_fq2bam/{sample}_N.bam",
         bai="parabricks/pbrun_fq2bam/{sample}_N.bam.bai",
-        fasta=config["reference"]["fasta"],
+        fasta=config.get("reference", {}).get("fasta", ""),
+        model=config.get("pbrun_deepvariant", {}).get("deepvariant_model", ""),
     output:
         vcf=temp("parabricks/pbrun_deepvariant/{sample}.vcf"),
     params:
@@ -31,6 +32,8 @@ rule pbrun_deepvariant:
         time=config.get("pbrun_deepvariant", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_deepvariant", {}).get("container", config["default_container"])
     message:
         "{rule}: call snp and small indels for {wildcards.sample} with parabricks"
     shell:
@@ -40,14 +43,15 @@ rule pbrun_deepvariant:
         "--num-gpus {params.num_gpus} "
         "--out-variants {output.vcf} "
         "{params.extra} "
+        "--pb-model-file {input.model} "
         "--tmp-dir parabricks/pbrun_deepvariant/{wildcards.sample} &> {log}"
 
 
 rule pbrun_fq2bam:
     input:
         fastq=lambda wildcards: get_input_fastq(units, wildcards),
-        fasta=config["reference"]["fasta"],
-        sites=config["reference"]["sites"],
+        fasta=config.get("reference", {}).get("fasta", ""),
+        sites=config.get("reference", {}).get("sites", ""),
     output:
         bam=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam"),
         bai=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam.bai"),
@@ -74,6 +78,8 @@ rule pbrun_fq2bam:
         time=config.get("pbrun_fq2bam", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_fq2bam", {}).get("container", config["default_container"])
     message:
         "{rule}: align and mark duplicates for {input.fastq} with parabricks"
     shell:
@@ -94,7 +100,7 @@ rule pbrun_mutectcaller_t:
         bam_t="parabricks/pbrun_fq2bam/{sample}_T.bam",
         bai_t="parabricks/pbrun_fq2bam/{sample}_T.bam.bai",
         recal_t="parabricks/pbrun_fq2bam/{sample}_T.txt",
-        fasta=config["reference"]["fasta"],
+        fasta=config.get("reference", {}).get("fasta", ""),
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_t/{sample}_T.vcf"),
     params:
@@ -117,6 +123,8 @@ rule pbrun_mutectcaller_t:
         time=config.get("pbrun_mutectcaller_t", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_mutectcaller_t", {}).get("container", config["default_container"])
     message:
         "{rule}: call snp and small indels for {wildcards.sample} tumor with parabricks"
     shell:
@@ -139,7 +147,7 @@ rule pbrun_mutectcaller_tn:
         bam_n="parabricks/pbrun_fq2bam/{sample}_N.bam",
         bai_n="parabricks/pbrun_fq2bam/{sample}_N.bam.bai",
         recal_n="parabricks/pbrun_fq2bam/{sample}_N.txt",
-        fasta=config["reference"]["fasta"],
+        fasta=config.get("reference", {}).get("fasta", ""),
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_tn/{sample}.vcf"),
     params:
@@ -162,6 +170,8 @@ rule pbrun_mutectcaller_tn:
         time=config.get("pbrun_mutectcaller_tn", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_mutectcaller_tn", {}).get("container", config["default_container"])
     message:
         "{rule}: call snp and small indels for {wildcards.sample} tumor/normal with parabricks"
     shell:
@@ -182,7 +192,7 @@ rule pbrun_mutectcaller_tn:
 rule pbrun_rna_fq2bam:
     input:
         fastq=lambda wildcards: get_input_fastq(units, wildcards),
-        genome_dir=config["reference"]["genome_dir"],
+        genome_dir=config.get("reference", {}).get("genome_dir", ""),
     output:
         bam=temp("parabricks/pbrun_rna_fq2bam/{sample}_{type}.bam"),
     params:
@@ -206,6 +216,8 @@ rule pbrun_rna_fq2bam:
         time=config.get("pbrun_rna_fq2bam", {}).get("time", config["default_resources"]["time"]),
     conda:
         "../envs/pbrun.yaml"
+    container:
+        config.get("pbrun_rna_fq2bam", {}).get("container", config["default_container"])
     message:
         "{rule}: splice-aware alignment with parabricks for {input.fastq}"
     shell:
