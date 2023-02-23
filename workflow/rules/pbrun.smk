@@ -6,20 +6,20 @@ __license__ = "GPL-3"
 
 rule pbrun_deepvariant:
     input:
-        bam="parabricks/pbrun_fq2bam/{sample}_N.bam",
-        bai="parabricks/pbrun_fq2bam/{sample}_N.bam.bai",
+        bam="parabricks/pbrun_fq2bam/{sample}_{type}.bam",
+        bai="parabricks/pbrun_fq2bam/{sample}_{type}.bam.bai",
         fasta=config.get("reference", {}).get("fasta", ""),
         model=config.get("pbrun_deepvariant", {}).get("deepvariant_model", ""),
     output:
-        vcf=temp("parabricks/pbrun_deepvariant/{sample}.vcf"),
+        vcf=temp("parabricks/pbrun_deepvariant/{sample}_{type}.vcf"),
     params:
         extra=config.get("pbrun_deepvariant", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_deepvariant", wildcards),
     log:
-        "parabricks/pbrun_deepvariant/{sample}.vcf.log",
+        "parabricks/pbrun_deepvariant/{sample}_{type}.vcf.log",
     benchmark:
         repeat(
-            "parabricks/pbrun_deepvariant/{sample}.vcf.benchmark.tsv",
+            "parabricks/pbrun_deepvariant/{sample}_{type}.vcf.benchmark.tsv",
             config.get("pbrun_deepvariant", {}).get("benchmark_repeats", 1),
         )
     threads: config.get("pbrun_deepvariant", {}).get("threads", config["default_resources"]["threads"])
@@ -35,7 +35,7 @@ rule pbrun_deepvariant:
     container:
         config.get("pbrun_deepvariant", {}).get("container", config["default_container"])
     message:
-        "{rule}: call snp and small indels for {wildcards.sample} with parabricks"
+        "{rule}: call snp and small indels for parabricks/{rule}/{wildcards.sample}_{wildcards.type}.input with parabricks"
     shell:
         "pbrun deepvariant "
         "--ref {input.fasta} "
