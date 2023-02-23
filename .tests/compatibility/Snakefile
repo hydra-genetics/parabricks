@@ -3,7 +3,7 @@ from hydra_genetics.utils.resources import load_resources
 
 rule all:
     input:
-        "parabricks/pbrun_deepvariant/NA12878.vcf",
+        "parabricks/pbrun_deepvariant/NA12878_N.vcf",
         "parabricks/pbrun_mutectcaller_t/NA12878_T.vcf",
         "parabricks/pbrun_mutectcaller_tn/NA12878.vcf",
         "parabricks/pbrun_rna_fq2bam/NA12878_R.bam",
