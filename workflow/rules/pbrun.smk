@@ -35,7 +35,7 @@ rule pbrun_deepvariant:
     container:
         config.get("pbrun_deepvariant", {}).get("container", config["default_container"])
     message:
-        "{rule}: call snp and small indels for parabricks/{rule}/{wildcards.sample}_{wildcards.type}.input with parabricks"
+        "{rule}: call snps and small indels in {input.bam} with parabricks"
     shell:
         "pbrun deepvariant "
         "--ref {input.fasta} "
