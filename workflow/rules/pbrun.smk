@@ -13,6 +13,8 @@ rule pbrun_deepvariant:
     output:
         vcf=temp("parabricks/pbrun_deepvariant/{sample}_{type}.vcf"),
     params:
+        cuda="CUDA_VISIBLE_DEVICES={}".format(os.environ["CUDA_VISIBLE_DEVICES"])
+         if "CUDA_VISIBLE_DEVICES" in os.environ.keys() else ""
         extra=config.get("pbrun_deepvariant", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_deepvariant", wildcards),
     log:
@@ -37,7 +39,7 @@ rule pbrun_deepvariant:
     message:
         "{rule}: call snps and small indels in {input.bam} with parabricks"
     shell:
-        "pbrun deepvariant "
+        "{params.cuda} pbrun deepvariant "
         "--ref {input.fasta} "
         "--in-bam {input.bam} "
         "--num-gpus {params.num_gpus} "
@@ -58,6 +60,8 @@ rule pbrun_fq2bam:
         metrics=temp("parabricks/pbrun_fq2bam/{sample}_{type}.metrics"),
         recal=temp("parabricks/pbrun_fq2bam/{sample}_{type}.txt"),
     params:
+        cuda="CUDA_VISIBLE_DEVICES={}".format(os.environ["CUDA_VISIBLE_DEVICES"])
+         if "CUDA_VISIBLE_DEVICES" in os.environ.keys() else ""
         extra=config.get("pbrun_fq2bam", {}).get("extra", ""),
         in_fq=get_in_fq,
         num_gpus=lambda wildcards: get_num_gpus("pbrun_fq2bam", wildcards),
@@ -83,7 +87,7 @@ rule pbrun_fq2bam:
     message:
         "{rule}: align and mark duplicates for {input.fastq} with parabricks"
     shell:
-        "pbrun fq2bam "
+        "{params.cuda} pbrun fq2bam "
         "--ref {input.fasta} "
         "--in-fq {params.in_fq} "
         "--knownSites {input.sites} "
@@ -104,6 +108,8 @@ rule pbrun_mutectcaller_t:
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_t/{sample}_T.vcf"),
     params:
+        cuda="CUDA_VISIBLE_DEVICES={}".format(os.environ["CUDA_VISIBLE_DEVICES"])
+         if "CUDA_VISIBLE_DEVICES" in os.environ.keys() else ""
         extra=config.get("pbrun_mutectcaller_t", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_mutectcaller_t", wildcards),
     log:
@@ -128,7 +134,7 @@ rule pbrun_mutectcaller_t:
     message:
         "{rule}: call snp and small indels for {wildcards.sample} tumor with parabricks"
     shell:
-        "pbrun mutectcaller "
+        "{params.cuda} pbrun mutectcaller "
         "--ref {input.fasta} "
         "--in-tumor-bam {input.bam_t} "
         "--tumor-name {wildcards.sample}_T "
@@ -151,6 +157,8 @@ rule pbrun_mutectcaller_tn:
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_tn/{sample}.vcf"),
     params:
+        cuda="CUDA_VISIBLE_DEVICES={}".format(os.environ["CUDA_VISIBLE_DEVICES"])
+         if "CUDA_VISIBLE_DEVICES" in os.environ.keys() else ""
         extra=config.get("pbrun_mutectcaller_tn", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_mutectcaller_tn", wildcards),
     log:
@@ -175,7 +183,7 @@ rule pbrun_mutectcaller_tn:
     message:
         "{rule}: call snp and small indels for {wildcards.sample} tumor/normal with parabricks"
     shell:
-        "pbrun mutectcaller "
+        "{params.cuda} pbrun mutectcaller "
         "--ref {input.fasta} "
         "--in-tumor-bam {input.bam_t} "
         "--tumor-name {wildcards.sample}_T "
@@ -196,6 +204,8 @@ rule pbrun_rna_fq2bam:
     output:
         bam=temp("parabricks/pbrun_rna_fq2bam/{sample}_{type}.bam"),
     params:
+        cuda="CUDA_VISIBLE_DEVICES={}".format(os.environ["CUDA_VISIBLE_DEVICES"])
+         if "CUDA_VISIBLE_DEVICES" in os.environ.keys() else ""
         extra=config.get("pbrun_rna_fq2bam", {}).get("extra", ""),
         in_fq=get_in_fq,
         num_gpus=lambda wildcards: get_num_gpus("pbrun_rna_fq2bam", wildcards),
@@ -221,7 +231,7 @@ rule pbrun_rna_fq2bam:
     message:
         "{rule}: splice-aware alignment with parabricks for {input.fastq}"
     shell:
-        "pbrun rna_fq2bam "
+        "{params.cuda} pbrun rna_fq2bam "
         "{params.extra} "
         "--genome-lib-dir {input.genome_dir} "
         "--in-fq {params.in_fq} "
