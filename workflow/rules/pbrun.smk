@@ -14,8 +14,8 @@ rule pbrun_deepvariant:
         vcf=temp("parabricks/pbrun_deepvariant/{sample}_{type}.vcf"),
     params:
         cuda="CUDA_VISIBLE_DEVICES={}".format(os.getenv("CUDA_VISIBLE_DEVICES"))
-         if os.getenv("CUDA_VISIBLE_DEVICES") is not None
-         else "",
+        if os.getenv("CUDA_VISIBLE_DEVICES") is not None
+        else "",
         extra=config.get("pbrun_deepvariant", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_deepvariant", wildcards),
     log:
@@ -62,8 +62,8 @@ rule pbrun_fq2bam:
         recal=temp("parabricks/pbrun_fq2bam/{sample}_{type}.txt"),
     params:
         cuda="CUDA_VISIBLE_DEVICES={}".format(os.getenv("CUDA_VISIBLE_DEVICES"))
-         if os.getenv("CUDA_VISIBLE_DEVICES") is not None
-         else "",
+        if os.getenv("CUDA_VISIBLE_DEVICES") is not None
+        else "",
         extra=config.get("pbrun_fq2bam", {}).get("extra", ""),
         in_fq=get_in_fq,
         num_gpus=lambda wildcards: get_num_gpus("pbrun_fq2bam", wildcards),
@@ -111,8 +111,8 @@ rule pbrun_mutectcaller_t:
         vcf=temp("parabricks/pbrun_mutectcaller_t/{sample}_T.vcf"),
     params:
         cuda="CUDA_VISIBLE_DEVICES={}".format(os.getenv("CUDA_VISIBLE_DEVICES"))
-         if os.getenv("CUDA_VISIBLE_DEVICES") is not None
-         else "",
+        if os.getenv("CUDA_VISIBLE_DEVICES") is not None
+        else "",
         extra=config.get("pbrun_mutectcaller_t", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_mutectcaller_t", wildcards),
     log:
@@ -161,8 +161,8 @@ rule pbrun_mutectcaller_tn:
         vcf=temp("parabricks/pbrun_mutectcaller_tn/{sample}.vcf"),
     params:
         cuda="CUDA_VISIBLE_DEVICES={}".format(os.getenv("CUDA_VISIBLE_DEVICES"))
-         if os.getenv("CUDA_VISIBLE_DEVICES") is not None
-         else "",
+        if os.getenv("CUDA_VISIBLE_DEVICES") is not None
+        else "",
         extra=config.get("pbrun_mutectcaller_tn", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_mutectcaller_tn", wildcards),
     log:
@@ -209,8 +209,8 @@ rule pbrun_rna_fq2bam:
         bam=temp("parabricks/pbrun_rna_fq2bam/{sample}_{type}.bam"),
     params:
         cuda="CUDA_VISIBLE_DEVICES={}".format(os.getenv("CUDA_VISIBLE_DEVICES"))
-         if os.getenv("CUDA_VISIBLE_DEVICES") is not None
-         else "",
+        if os.getenv("CUDA_VISIBLE_DEVICES") is not None
+        else "",
         extra=config.get("pbrun_rna_fq2bam", {}).get("extra", ""),
         in_fq=get_in_fq,
         num_gpus=lambda wildcards: get_num_gpus("pbrun_rna_fq2bam", wildcards),
