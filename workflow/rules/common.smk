@@ -84,6 +84,13 @@ def get_num_gpus(rule, wildcards):
     return gres_dict["gpu"]
 
 
+def get_cuda_devices(wildcards):
+    cuda_devices = "CUDA_VISIBLE_DEVICES={}".format(os.getenv("CUDA_VISIBLE_DEVICES"))
+        if os.getenv("CUDA_VISIBLE_DEVICES") is not None
+        else ""
+    return cuda_devices
+
+
 def compile_output_list(wildcards):
     files = {
         "pbrun_deepvariant": [

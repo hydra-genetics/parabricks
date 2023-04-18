@@ -10,5 +10,4 @@ reference:
   sites: "reference/sites.list"
 
 pbrun_deepvariant:
-  deepvariant_model: "deepvariant.eng"
-  extra: ""
+  extra: "--pb-model-file deepvariant.eng"
