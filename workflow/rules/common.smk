@@ -85,9 +85,10 @@ def get_num_gpus(rule, wildcards):
 
 
 def get_cuda_devices(wildcards):
-    cuda_devices = "CUDA_VISIBLE_DEVICES={}".format(os.getenv("CUDA_VISIBLE_DEVICES"))
-        if os.getenv("CUDA_VISIBLE_DEVICES") is not None
-        else ""
+    if os.getenv("CUDA_VISIBLE_DEVICES") is not None:
+        cuda_devices = "CUDA_VISIBLE_DEVICES={}".format(os.getenv("CUDA_VISIBLE_DEVICES"))
+    else:
+        cuda_devices = ""
     return cuda_devices
 
 
