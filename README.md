@@ -84,7 +84,7 @@ use rule * from parabricks as parabricks_*
 ### Compatibility
 
 Latest:
- - prealignment:v0.2.0
+ - prealignment:v1.1.0
 
  See [COMPATIBLITY.md](../main/COMPATIBLITY.md) file for a complete list of module compatibility.
 
