@@ -10,4 +10,5 @@ reference:
   sites: "reference/sites.list"
 
 pbrun_deepvariant:
+  container: "docker://nvcr.io/nvidia/clara/clara-parabricks:4.0.0-1"
   extra: "--pb-model-file deepvariant.eng"
