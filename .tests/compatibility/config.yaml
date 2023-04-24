@@ -4,7 +4,7 @@ units: "units.tsv"
 
 trimmer_software: "fastp_pe"
 
-default_container: "docker://hydragenetics/common:0.4.0"
+default_container: "docker://hydragenetics/common:0.3.0"
 
 reference:
   fasta: "reference/reference.fasta"
