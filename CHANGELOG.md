@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/hydra-genetics/parabricks/compare/v0.2.0...v1.0.0) (2023-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* reorder wildcards for compatability with prealignment module
+
+### Features
+
+* **pbrun:** Add cuda env variable through params ([779a0ee](https://www.github.com/hydra-genetics/parabricks/commit/779a0eee5679e483e1d10ed77df7953f4fec6ca1))
+* Updates for compatability with Parabricks v4 ([25f08dc](https://www.github.com/hydra-genetics/parabricks/commit/25f08dc55ec0ff997afe0ddb05bb689ef2ecd397))
+
+
+### Bug Fixes
+
+* add {type} to file name ([b2dd0b0](https://www.github.com/hydra-genetics/parabricks/commit/b2dd0b049c63b34e1384f560a74152e286d26144))
+* **common:** add fq2bam basm file as one of the ouputs ([6f857cd](https://www.github.com/hydra-genetics/parabricks/commit/6f857cdd48ea39095055c79616a7fc0f03d63df7))
+* reorder wildcards for compatability with prealignment module ([6918b1d](https://www.github.com/hydra-genetics/parabricks/commit/6918b1d0ae4d21fe3a9939ef0e1df042dc42f21d))
+* type in common ([40d1738](https://www.github.com/hydra-genetics/parabricks/commit/40d17386a6d2d4adfc601191d3f71ed5d16fba98))
+* type in sankemake compability ([b6a3be3](https://www.github.com/hydra-genetics/parabricks/commit/b6a3be328d4e517b9931323c80f933c77ec0ebb1))
+
+
+### Documentation
+
+* create dag for rulegraph ([aaed08b](https://www.github.com/hydra-genetics/parabricks/commit/aaed08b061e9c31ba0a147d6b2504d13730f0e73))
+* update compatability.md ([d6a8ca8](https://www.github.com/hydra-genetics/parabricks/commit/d6a8ca80d6cf23a6ef54e5a142acc26d80a7c513))
+* update the rulegraph ([bf52ecc](https://www.github.com/hydra-genetics/parabricks/commit/bf52eccd7f71d5eebfcbfb89fcb3d9cfaa87525d))
+
 ## [0.2.0](https://www.github.com/hydra-genetics/parabricks/compare/v0.1.0...v0.2.0) (2022-05-16)
 
 
