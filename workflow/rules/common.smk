@@ -97,6 +97,10 @@ def compile_output_list(wildcards):
         "pbrun_deepvariant": [
             "_N.vcf",
         ],
+        "pbrun_fq2bam": [
+            "_N.bam",
+            "_T.bam",
+        ],
         "pbrun_mutectcaller_t": ["_T.vcf"],
         "pbrun_mutectcaller_tn": [".vcf"],
         "pbrun_rna_fq2bam": [
