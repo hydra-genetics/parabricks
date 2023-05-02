@@ -4,7 +4,7 @@ units: "units.tsv"
 
 trimmer_software: "fastp_pe"
 
-default_container: "docker://hydragenetics/common:0.1.3"
+default_container: "docker://hydragenetics/common:0.3.0"
 
 reference:
   fasta: "reference/reference.fasta"
@@ -13,3 +13,8 @@ reference:
 
 fastp_pe:
   container: "docker://hydragenetics/fastp:0.20.1"
+
+pbrun_deepvariant:
+  container: "docker://nvcr.io/nvidia/clara/clara-parabricks:4.0.0-1"
+  extra: "--pb-model-file deepvariant.eng"
+

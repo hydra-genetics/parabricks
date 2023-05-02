@@ -2,7 +2,13 @@ resources: "resources.yaml"
 samples: "samples.tsv"
 units: "units.tsv"
 
+default_container: "docker://hydragenetics/common:0.1.9"
+
 reference:
   fasta: "reference/reference.fasta"
   genome_dir: "reference/"
   sites: "reference/sites.list"
+
+pbrun_deepvariant:
+  container: "docker://nvcr.io/nvidia/clara/clara-parabricks:4.0.0-1"
+  extra: "--pb-model-file deepvariant.eng"
