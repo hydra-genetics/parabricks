@@ -3,4 +3,4 @@
 
 | prealignment version | parabricks version |
 | --- | --- |
-| v0.2.0 |  |
+| v1.1.0 |  |
