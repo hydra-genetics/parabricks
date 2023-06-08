@@ -76,11 +76,11 @@ def get_in_fq(wildcards):
 
 
 def get_num_gpus(rule, wildcards):
-    gres = config.get(rule, {"gres": "--gres=gpu:1"}).get("gres", "--gres=gpu:1")[len("--gres=") :]
+    gres = config.get(rule, {"gres": "--gres=gres:gpu:1"}).get("gres", "--gres=gres:gpu:1")[len("--gres=") :]
     gres_dict = dict()
     for item in gres.split(","):
         items = item.split(":")
-        gres_dict[items[0]] = items[1]
+        gres_dict[items[1]] = items[2]
     return gres_dict["gpu"]
 
 
