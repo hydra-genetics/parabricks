@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/hydra-genetics/parabricks/compare/v1.0.0...v1.1.0) (2023-06-19)
+
+
+### Features
+
+* handle gres specification for slurm version 22 ([9d1e1a8](https://www.github.com/hydra-genetics/parabricks/commit/9d1e1a888c5c65b1d038b07903a09f42c4d36d96))
+* update snakemake version, to range with upper limit 8 ([6b85c00](https://www.github.com/hydra-genetics/parabricks/commit/6b85c0060f3408fe9af4a90d83fad87a18d6c633))
+
 ## [1.0.0](https://www.github.com/hydra-genetics/parabricks/compare/v0.2.0...v1.0.0) (2023-05-02)
 
 
