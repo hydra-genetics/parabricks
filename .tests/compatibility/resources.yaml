@@ -6,21 +6,21 @@ default_resources:
   partition: "core"
 
 pbrun_deepvariant:
-  gres: "--gres=gpu:1"
+  gres: "--gres=gres:gpu:1"
   partition: "gpu"
 
 pbrun_fq2bam:
-  gres: "--gres=gpu:1"
+  gres: "--gres=gres:gpu:1"
   partition: "gpu"
 
 pbrun_mutectcaller_t:
-  gres: "--gres=gpu:1"
+  gres: "--gres=gres:gpu:1"
   partition: "gpu"
 
 pbrun_mutectcaller_tn:
-  gres: "--gres=gpu:1"
+  gres: "--gres=gres:gpu:1"
   partition: "gpu"
 
 pbrun_rna_fq2bam:
-  gres: "--gres=gpu:1"
+  gres: "--gres=gres:gpu:1"
   partition: "gpu"
