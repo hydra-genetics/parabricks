@@ -42,8 +42,7 @@ rule pbrun_deepvariant:
         "--in-bam {input.bam} "
         "--num-gpus {params.num_gpus} "
         "--out-variants {output.vcf} "
-        "{params.extra} "
-        "--tmp-dir parabricks/pbrun_deepvariant/{wildcards.sample} &> {log}"
+        "{params.extra} &> {log}"
 
 
 rule pbrun_fq2bam:
@@ -91,8 +90,7 @@ rule pbrun_fq2bam:
         "--out-bam {output.bam} "
         "--out-duplicate-metrics {output.metrics} "
         "--out-recal-file {output.recal} "
-        "{params.extra} "
-        "--tmp-dir parabricks/pbrun_fq2bam/{wildcards.sample}_{wildcards.type} &> {log}"
+        "{params.extra} &> {log}"
 
 
 rule pbrun_mutectcaller_t:
@@ -136,8 +134,7 @@ rule pbrun_mutectcaller_t:
         "--in-tumor-recal-file {input.recal_t} "
         "--num-gpus {params.num_gpus} "
         "--out-vcf {output.vcf} "
-        "{params.extra} "
-        "--tmp-dir parabricks/pbrun_mutectcaller_t/{wildcards.sample} &> {log}"
+        "{params.extra} &> {log}"
 
 
 rule pbrun_mutectcaller_tn:
@@ -187,8 +184,7 @@ rule pbrun_mutectcaller_tn:
         "--in-normal-recal-file {input.recal_n} "
         "--num-gpus {params.num_gpus} "
         "--out-vcf {output.vcf} "
-        "{params.extra} "
-        "--tmp-dir parabricks/pbrun_mutectcaller_tn/{wildcards.sample} &> {log}"
+        "{params.extra} &> {log}"
 
 
 rule pbrun_rna_fq2bam:
@@ -232,6 +228,5 @@ rule pbrun_rna_fq2bam:
         "--output-dir parabricks/pbrun_rna_fq2bam/ "
         "--out-bam {output.bam} "
         "--out-prefix {wildcards.sample}_{wildcards.type} "
-        "--tmp-dir parabricks/pbrun_rna_fq2bam/{wildcards.sample}_{wildcards.type} "
         "{params.extra} "
         "--logfile {log}"
