@@ -30,8 +30,6 @@ rule pbrun_deepvariant:
         partition=config.get("pbrun_deepvariant", {}).get("partition", config["default_resources"]["partition"]),
         threads=config.get("pbrun_deepvariant", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("pbrun_deepvariant", {}).get("time", config["default_resources"]["time"]),
-    conda:
-        "../envs/pbrun.yaml"
     container:
         config.get("pbrun_deepvariant", {}).get("container", config["default_container"])
     message:
@@ -75,8 +73,6 @@ rule pbrun_fq2bam:
         partition=config.get("pbrun_fq2bam", {}).get("partition", config["default_resources"]["partition"]),
         threads=config.get("pbrun_fq2bam", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("pbrun_fq2bam", {}).get("time", config["default_resources"]["time"]),
-    conda:
-        "../envs/pbrun.yaml"
     container:
         config.get("pbrun_fq2bam", {}).get("container", config["default_container"])
     message:
@@ -120,8 +116,6 @@ rule pbrun_mutectcaller_t:
         partition=config.get("pbrun_mutectcaller_t", {}).get("partition", config["default_resources"]["partition"]),
         threads=config.get("pbrun_mutectcaller_t", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("pbrun_mutectcaller_t", {}).get("time", config["default_resources"]["time"]),
-    conda:
-        "../envs/pbrun.yaml"
     container:
         config.get("pbrun_mutectcaller_t", {}).get("container", config["default_container"])
     message:
@@ -167,8 +161,6 @@ rule pbrun_mutectcaller_tn:
         partition=config.get("pbrun_mutectcaller_tn", {}).get("partition", config["default_resources"]["partition"]),
         threads=config.get("pbrun_mutectcaller_tn", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("pbrun_mutectcaller_tn", {}).get("time", config["default_resources"]["time"]),
-    conda:
-        "../envs/pbrun.yaml"
     container:
         config.get("pbrun_mutectcaller_tn", {}).get("container", config["default_container"])
     message:
@@ -213,8 +205,6 @@ rule pbrun_rna_fq2bam:
         partition=config.get("pbrun_rna_fq2bam", {}).get("partition", config["default_resources"]["partition"]),
         threads=config.get("pbrun_rna_fq2bam", {}).get("threads", config["default_resources"]["threads"]),
         time=config.get("pbrun_rna_fq2bam", {}).get("time", config["default_resources"]["time"]),
-    conda:
-        "../envs/pbrun.yaml"
     container:
         config.get("pbrun_rna_fq2bam", {}).get("container", config["default_container"])
     message:
