@@ -51,7 +51,6 @@ rule pbrun_fq2bam:
     output:
         bam=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam"),
         bai=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam.bai"),
-        metrics=temp("parabricks/pbrun_fq2bam/{sample}_{type}.metrics"),
         recal=temp("parabricks/pbrun_fq2bam/{sample}_{type}.txt"),
     params:
         cuda=get_cuda_devices,
