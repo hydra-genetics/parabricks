@@ -84,8 +84,7 @@ rule pbrun_fq2bam:
         "--knownSites {input.sites} "
         "--num-gpus {params.num_gpus} "
         "--out-bam {output.bam} "
-        "--out-duplicate-metrics {output.metrics} "
-        "--out-recal-file {output.recal} "
+        "--out-recal-file {output.recal} 
         "{params.extra} &> {log}"
 
 
