@@ -78,7 +78,6 @@ rule pbrun_fq2bam:
         "{params.cuda} pbrun fq2bam "
         "--ref {input.fasta} "
         "--in-fq {params.in_fq} "
-        "--knownSites {input.sites} "
         "--num-gpus {params.num_gpus} "
         "--out-bam {output.bam} "
         "{params.extra} &> {log}"
