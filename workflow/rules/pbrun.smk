@@ -47,11 +47,9 @@ rule pbrun_fq2bam:
     input:
         fastq=lambda wildcards: get_input_fastq(units, wildcards),
         fasta=config.get("reference", {}).get("fasta", ""),
-        sites=config.get("reference", {}).get("sites", ""),
     output:
         bam=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam"),
         bai=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam.bai"),
-        recal=temp("parabricks/pbrun_fq2bam/{sample}_{type}.txt"),
     params:
         cuda=get_cuda_devices,
         extra=config.get("pbrun_fq2bam", {}).get("extra", ""),
@@ -83,15 +81,57 @@ rule pbrun_fq2bam:
         "--knownSites {input.sites} "
         "--num-gpus {params.num_gpus} "
         "--out-bam {output.bam} "
-        "--out-recal-file {output.recal} "
         "{params.extra} &> {log}"
 
 
+rule pbrun_fq2bam_recal:
+    input:
+        fastq=lambda wildcards: get_input_fastq(units, wildcards),
+        fasta=config.get("reference", {}).get("fasta", ""),
+        sites=config.get("reference", {}).get("sites", ""),
+    output:
+        bam=temp("parabricks/pbrun_fq2bam_recal/{sample}_{type}.bam"),
+        bai=temp("parabricks/pbrun_fq2bam_recal/{sample}_{type}.bam.bai"),
+        recal=temp("parabricks/pbrun_fq2bam_recal/{sample}_{type}.txt"),
+    params:
+        cuda=get_cuda_devices,
+        extra=config.get("pbrun_fq2bam_recal", {}).get("extra", ""),
+        in_fq=get_in_fq,
+        num_gpus=lambda wildcards: get_num_gpus("pbrun_fq2bam_recal", wildcards),
+    log:
+        "parabricks/pbrun_fq2bam_recal/{sample}_{type}.bam.log",
+    benchmark:
+        repeat(
+            "parabricks/pbrun_fq2bam_recal/{sample}_{type}.bam.benchmark.tsv",
+            config.get("pbrun_fq2bam_recal", {}).get("benchmark_repeats", 1),
+        )
+    threads: config.get("pbrun_fq2bam_recal", {}).get("threads", config["default_resources"]["threads"])
+    resources:
+        gres=config.get("pbrun_fq2bam_recal", {}).get("gres", ""),
+        mem_mb=config.get("pbrun_fq2bam_recal", {}).get("mem_mb", config["default_resources"]["mem_mb"]),
+        mem_per_cpu=config.get("pbrun_fq2bam_recal", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]),
+        partition=config.get("pbrun_fq2bam_recal", {}).get("partition", config["default_resources"]["partition"]),
+        threads=config.get("pbrun_fq2bam_recal", {}).get("threads", config["default_resources"]["threads"]),
+        time=config.get("pbrun_fq2bam_recal", {}).get("time", config["default_resources"]["time"]),
+    container:
+        config.get("pbrun_fq2bam_recal", {}).get("container", config["default_container"])
+    message:
+        "{rule}: align and mark duplicates for {input.fastq} with parabricks"
+    shell:
+        "{params.cuda} pbrun fq2bam "
+        "--ref {input.fasta} "
+        "--in-fq {params.in_fq} "
+        "--knownSites {input.sites} "
+        "--num-gpus {params.num_gpus} "
+        "--out-bam {output.bam} "
+        "--out-recal-file {output.recal} "
+        "{params.extra} &> {log}"
+
 rule pbrun_mutectcaller_t:
     input:
-        bam_t="parabricks/pbrun_fq2bam/{sample}_T.bam",
-        bai_t="parabricks/pbrun_fq2bam/{sample}_T.bam.bai",
-        recal_t="parabricks/pbrun_fq2bam/{sample}_T.txt",
+        bam_t="parabricks/pbrun_fq2bam_recal/{sample}_T.bam",
+        bai_t="parabricks/pbrun_fq2bam_recal/{sample}_T.bam.bai",
+        recal_t="parabricks/pbrun_fq2bam_recal/{sample}_T.txt",
         fasta=config.get("reference", {}).get("fasta", ""),
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_t/{sample}_T.vcf"),
@@ -131,12 +171,12 @@ rule pbrun_mutectcaller_t:
 
 rule pbrun_mutectcaller_tn:
     input:
-        bam_t="parabricks/pbrun_fq2bam/{sample}_T.bam",
-        bai_t="parabricks/pbrun_fq2bam/{sample}_T.bam.bai",
-        recal_t="parabricks/pbrun_fq2bam/{sample}_T.txt",
-        bam_n="parabricks/pbrun_fq2bam/{sample}_N.bam",
-        bai_n="parabricks/pbrun_fq2bam/{sample}_N.bam.bai",
-        recal_n="parabricks/pbrun_fq2bam/{sample}_N.txt",
+        bam_t="parabricks/pbrun_fq2bam_recal/{sample}_T.bam",
+        bai_t="parabricks/pbrun_fq2bam_recal/{sample}_T.bam.bai",
+        recal_t="parabricks/pbrun_fq2bam_recal/{sample}_T.txt",
+        bam_n="parabricks/pbrun_fq2bam_recal/{sample}_N.bam",
+        bai_n="parabricks/pbrun_fq2bam_recal/{sample}_N.bam.bai",
+        recal_n="parabricks/pbrun_fq2bam_recal/{sample}_N.txt",
         fasta=config.get("reference", {}).get("fasta", ""),
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_tn/{sample}.vcf"),
