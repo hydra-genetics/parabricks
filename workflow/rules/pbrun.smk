@@ -15,6 +15,7 @@ rule pbrun_deepvariant:
         cuda=get_cuda_devices,
         extra=config.get("pbrun_deepvariant", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_deepvariant", wildcards),
+        tmp=config.get("pbrun_deepvariant", {}).get("tmp_dir", "/tmp"),
     log:
         "parabricks/pbrun_deepvariant/{sample}_{type}.vcf.log",
     benchmark:
@@ -40,6 +41,7 @@ rule pbrun_deepvariant:
         "--in-bam {input.bam} "
         "--num-gpus {params.num_gpus} "
         "--out-variants {output.vcf} "
+        "--tmp-dir {params.tmp} "
         "{params.extra} &> {log}"
 
 
@@ -55,6 +57,7 @@ rule pbrun_fq2bam:
         extra=config.get("pbrun_fq2bam", {}).get("extra", ""),
         in_fq=get_in_fq,
         num_gpus=lambda wildcards: get_num_gpus("pbrun_fq2bam", wildcards),
+        tmp=config.get("pbrun_fq2bam", {}).get("tmp_dir", "/tmp"),
     log:
         "parabricks/pbrun_fq2bam/{sample}_{type}.bam.log",
     benchmark:
@@ -80,6 +83,7 @@ rule pbrun_fq2bam:
         "--in-fq {params.in_fq} "
         "--num-gpus {params.num_gpus} "
         "--out-bam {output.bam} "
+        "--tmp-dir {params.tmp} "
         "{params.extra} &> {log}"
 
 
@@ -97,6 +101,7 @@ rule pbrun_fq2bam_recal:
         extra=config.get("pbrun_fq2bam_recal", {}).get("extra", ""),
         in_fq=get_in_fq,
         num_gpus=lambda wildcards: get_num_gpus("pbrun_fq2bam_recal", wildcards),
+        tmp=config.get("pbrun_fq2bam_recal", {}).get("tmp_dir", "/tmp"),
     log:
         "parabricks/pbrun_fq2bam_recal/{sample}_{type}.bam.log",
     benchmark:
@@ -124,6 +129,7 @@ rule pbrun_fq2bam_recal:
         "--num-gpus {params.num_gpus} "
         "--out-bam {output.bam} "
         "--out-recal-file {output.recal} "
+        "--tmp-dir {params.tmp} "
         "{params.extra} &> {log}"
 
 rule pbrun_mutectcaller_t:
@@ -138,6 +144,7 @@ rule pbrun_mutectcaller_t:
         cuda=get_cuda_devices,
         extra=config.get("pbrun_mutectcaller_t", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_mutectcaller_t", wildcards),
+        tmp=config.get("pbrun_mutectcaller_t", {}).get("tmp_dir", "/tmp"),
     log:
         "parabricks/pbrun_mutectcaller_t/{sample}_T.vcf.log",
     benchmark:
@@ -165,6 +172,7 @@ rule pbrun_mutectcaller_t:
         "--in-tumor-recal-file {input.recal_t} "
         "--num-gpus {params.num_gpus} "
         "--out-vcf {output.vcf} "
+        "--tmp-dir {params.tmp} "
         "{params.extra} &> {log}"
 
 
@@ -183,6 +191,7 @@ rule pbrun_mutectcaller_tn:
         cuda=get_cuda_devices,
         extra=config.get("pbrun_mutectcaller_tn", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_mutectcaller_tn", wildcards),
+        tmp=config.get("pbrun_mutectcaller_tn", {}).get("tmp_dir", "/tmp"),
     log:
         "parabricks/pbrun_mutectcaller_tn/{sample}.vcf.log",
     benchmark:
@@ -213,6 +222,7 @@ rule pbrun_mutectcaller_tn:
         "--in-normal-recal-file {input.recal_n} "
         "--num-gpus {params.num_gpus} "
         "--out-vcf {output.vcf} "
+        "--tmp-dir {params.tmp} "
         "{params.extra} &> {log}"
 
 
@@ -227,6 +237,7 @@ rule pbrun_rna_fq2bam:
         extra=config.get("pbrun_rna_fq2bam", {}).get("extra", ""),
         in_fq=get_in_fq,
         num_gpus=lambda wildcards: get_num_gpus("pbrun_rna_fq2bam", wildcards),
+        tmp=config.get("pbrun_rna_fq2bam", {}).get("tmp_dir", "/tmp"),
     log:
         "parabricks/pbrun_rna_fq2bam/{sample}_{type}.bam.log",
     benchmark:
@@ -256,4 +267,5 @@ rule pbrun_rna_fq2bam:
         "--out-bam {output.bam} "
         "--out-prefix {wildcards.sample}_{wildcards.type} "
         "{params.extra} "
+        "--tmp-dir {params.tmp} "
         "--logfile {log}"
