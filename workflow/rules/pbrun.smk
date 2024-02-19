@@ -148,7 +148,7 @@ rule pbrun_mutectcaller_t:
         extra=config.get("pbrun_mutectcaller_t", {}).get("extra", ""),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_mutectcaller_t", wildcards),
         tmp=config.get("pbrun_mutectcaller_t", {}).get(
-            "tmp_dir", "/parabricks/pbrun_mutectcaller_t/{wildcards.sample}_{wildcards.type}"
+            "tmp_dir", "parabricks/pbrun_mutectcaller_t/{wildcards.sample}_{wildcards.type}"
         ),
     log:
         "parabricks/pbrun_mutectcaller_t/{sample}_T.vcf.log",
@@ -244,7 +244,7 @@ rule pbrun_rna_fq2bam:
         extra=config.get("pbrun_rna_fq2bam", {}).get("extra", ""),
         in_fq=get_in_fq,
         num_gpus=lambda wildcards: get_num_gpus("pbrun_rna_fq2bam", wildcards),
-        tmp=config.get("pbrun_rna_fq2bam", {}).get("tmp_dir", "/parabricks/pbrun_rna_fq2bam/{wildcards.sample}_{wildcards.type}"),
+        tmp=config.get("pbrun_rna_fq2bam", {}).get("tmp_dir", "parabricks/pbrun_rna_fq2bam/{wildcards.sample}_{wildcards.type}"),
     log:
         "parabricks/pbrun_rna_fq2bam/{sample}_{type}.bam.log",
     benchmark:
