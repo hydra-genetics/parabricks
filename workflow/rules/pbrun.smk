@@ -272,7 +272,6 @@ rule pbrun_rna_fq2bam:
         "{rule}: splice-aware alignment with parabricks for {input.fastq}"
     shell:
         "{params.cuda} pbrun rna_fq2bam "
-        "{params.extra} "
         "--genome-lib-dir {input.genome_dir} "
         "--in-fq {params.in_fq} "
         "--num-gpus {params.num_gpus} "
