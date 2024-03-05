@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/hydra-genetics/parabricks/compare/v1.1.0...v1.2.0) (2024-03-05)
+
+
+### Features
+
+* change how tmp-dir is specified and remove bqsr ([7b9f7f3](https://www.github.com/hydra-genetics/parabricks/commit/7b9f7f34aad6f2330fc2fd576aaa99172ec832f3))
+
+
+### Bug Fixes
+
+* remove extra params.extra in shell ([9a7d40f](https://www.github.com/hydra-genetics/parabricks/commit/9a7d40f775bb4f8be2ae4e331a3f24dc89e0388b))
+
 ## [1.1.0](https://www.github.com/hydra-genetics/parabricks/compare/v1.0.0...v1.1.0) (2023-06-19)
 
 
