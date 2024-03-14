@@ -14,6 +14,7 @@ rule pbrun_deepvariant:
     params:
         cuda=get_cuda_devices,
         extra=config.get("pbrun_deepvariant", {}).get("extra", ""),
+        mode=config.get("pbrun_deepvariant", {}).get("mode", "shortread"),
         num_gpus=lambda wildcards: get_num_gpus("pbrun_deepvariant", wildcards),
         tmp=config.get("pbrun_deepvariant", {}).get(
             "tmp_dir", lambda wildcards: f"parabricks/pbrun_deepvariant/{wildcards.sample}_{wildcards.type}"
@@ -41,6 +42,7 @@ rule pbrun_deepvariant:
         "{params.cuda} pbrun deepvariant "
         "--ref {input.fasta} "
         "--in-bam {input.bam} "
+        "--mode {params.mode} "
         "--num-gpus {params.num_gpus} "
         "--out-variants {output.vcf} "
         "--tmp-dir {params.tmp} "
