@@ -281,3 +281,43 @@ rule pbrun_rna_fq2bam:
         "{params.extra} "
         "--tmp-dir {params.tmp} "
         "--logfile {log}"
+
+
+rule deepvariant_tabix:
+    input:
+        "parabricks/pbrun_deepvariant/{sample}_{type}_{processing_unit}_{barcode}.deepvariant.g.vcf.gz",
+    output:
+        "parabricks/pbrun_deepvariant/{sample}_{type}_{processing_unit}_{barcode}.deepvariant.g.vcf.gz.tbi",
+    log:
+        "parabricks/pbrun_deepvariant/{sample}_{type}_{processing_unit}_{barcode}.deepvariant.g.vcf.log",
+    resources:
+        partition=config.get("deepvariant_tabix", {}).get("partition", config["default_resources"]["partition"]),
+        time=config.get("deepvariant_tabix", {}).get("time", config["default_resources"]["time"]),
+        threads=config.get("deepvariant_tabix", {}).get("threads", config["default_resources"]["threads"]),
+        mem_per_cpu=config.get("deepvariant_tabix", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]), 
+    params:
+        # pass arguments to tabix (e.g. index a vcf)
+        "-p vcf",
+    wrapper:
+        "v3.5.2/bio/tabix/index"
+
+rule deepvariant_gzip:
+    input:
+        "parabricks/pbrun_deepvariant/{sample}_{type}_{processing_unit}_{barcode}.deepvariant.g.vcf",
+    output:
+        "parabricks/pbrun_deepvariant/{sample}_{type}_{processing_unit}_{barcode}.deepvariant.g.vcf.gz",
+    log:
+        "parabricks/pbrun_deepvariant/{sample}_{type}_{processing_unit}_{barcode}.deepvariant.g.gzip.log",
+    resources:
+        partition=config.get("deepvariant_gzip", {}).get("partition", config["default_resources"]["partition"]),
+        time=config.get("deepvariant_gzip", {}).get("time", config["default_resources"]["time"]),
+        threads=config.get("deepvariant_gzip", {}).get("threads", config["default_resources"]["threads"]),
+        mem_per_cpu=config.get("deepvariant_gzip", {}).get("mem_per_cpu", config["default_resources"]["mem_per_cpu"]), 
+    params:
+        # pass arguments to tabix (e.g. index a vcf)
+        "-p vcf",
+    shell:
+        "gzip {input}"
+
+
+
