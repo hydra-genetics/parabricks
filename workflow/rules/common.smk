@@ -75,7 +75,7 @@ def get_in_fq(wildcards):
     return " --in-fq ".join(input_list)
 
 
-def get_num_gpus(rule):
+def get_num_gpus(rule, wildcards):
     gres = config.get(rule, {"gres": "--gres=gres:gpu:1"}).get("gres", "--gres=gres:gpu:1")[len("--gres=") :]
     gres_list = gres.split(':')
     num_gpus = gres_list[-1]
