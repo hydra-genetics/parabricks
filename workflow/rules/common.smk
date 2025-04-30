@@ -75,13 +75,12 @@ def get_in_fq(wildcards):
     return " --in-fq ".join(input_list)
 
 
-def get_num_gpus(rule, wildcards):
+def get_num_gpus(rule):
     gres = config.get(rule, {"gres": "--gres=gres:gpu:1"}).get("gres", "--gres=gres:gpu:1")[len("--gres=") :]
-    gres_dict = dict()
-    for item in gres.split(","):
-        items = item.split(":")
-        gres_dict[items[1]] = items[2]
-    return gres_dict["gpu"]
+    gres_list = gres.split(':')
+    num_gpus = gres_list[-1]
+
+    return num_gpus
 
 
 def get_cuda_devices(wildcards):
