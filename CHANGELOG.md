@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/hydra-genetics/parabricks/compare/v1.2.0...v1.2.1) (2025-05-09)
+
+
+### Bug Fixes
+
+* extract the number of gpus in a more robust manner ([670aaeb](https://www.github.com/hydra-genetics/parabricks/commit/670aaeb13e41ce29ce7189da974f2e74cdf92ed9))
+
 ## [1.2.0](https://www.github.com/hydra-genetics/parabricks/compare/v1.1.0...v1.2.0) (2024-03-05)
 
 
