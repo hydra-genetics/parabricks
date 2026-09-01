@@ -2,10 +2,7 @@
 
 #### Snakemake module containing an array of steps provided by the parabricks tookit
 
-![compatibility](https://github.com/hydra-genetics/parabricks/actions/workflows/compatibility.yaml/badge.svg?branch=develop)
-![lint](https://github.com/hydra-genetics/parabricks/actions/workflows/lint.yaml/badge.svg?branch=develop)
-![snakefmt](https://github.com/hydra-genetics/parabricks/actions/workflows/snakefmt.yaml/badge.svg?branch=develop)
-![snakemake dry run](https://github.com/hydra-genetics/parabricks/actions/workflows/snakemake-dry-run.yaml/badge.svg?branch=develop)
+![CI](https://github.com/hydra-genetics/parabricks/actions/workflows/ci.yaml/badge.svg?branch=develop)
 
 [![License: GPL-3](https://img.shields.io/badge/License-GPL3-yellow.svg)](https://opensource.org/licenses/gpl-3.0.html)
 
@@ -22,11 +19,11 @@ use of read group information, add machine, flowcell and library specifics to
 
 In order to use this module, the following dependencies are required:
 
-[![hydra-genetics](https://img.shields.io/badge/hydragenetics-v0.15.0-blue)](https://github.com/hydra-genetics/)
+[![hydra-genetics](https://img.shields.io/badge/hydragenetics-migrate--to--snakemake9-orange)](https://github.com/hydra-genetics/hydra-genetics/tree/migrate-to-snakemake9-python3.12)
 [![pandas](https://img.shields.io/badge/pandas-1.3.1-blue)](https://pandas.pydata.org/)
 [![parabricks](https://img.shields.io/badge/parabricks-4.0-blue)](https://docs.nvidia.com/clara/parabricks/4.0.0/index.html)
-[![python](https://img.shields.io/badge/python-3.8-blue)](https://www.python.org/)
-[![snakemake](https://img.shields.io/badge/snakemake-7.8.0-blue)](https://snakemake.readthedocs.io/en/stable/)
+[![python](https://img.shields.io/badge/python-3.12-blue)](https://www.python.org/)
+[![snakemake](https://img.shields.io/badge/snakemake-9.0.0-blue)](https://snakemake.readthedocs.io/en/stable/)
 
 ## :school_satchel: Preparations
 
@@ -84,7 +81,12 @@ use rule * from parabricks as parabricks_*
 ### Compatibility
 
 Latest:
- - prealignment:v1.1.0
+ - prealignment:migrate-to-snakemake9
+
+> **TODO:** this is a temporary branch pin. No released `prealignment` tag is
+> Snakemake 9 compatible (v1.4.0 and earlier annotate with `snakemake.io.Wildcards`).
+> Repin to a tag once prealignment ships a Snakemake 9 release, and switch
+> `.tests/compatibility/Snakefile` back from `branch=` to `tag=`.
 
  See [COMPATIBLITY.md](../main/COMPATIBLITY.md) file for a complete list of module compatibility.
 
