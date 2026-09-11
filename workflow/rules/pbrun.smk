@@ -8,7 +8,7 @@ rule pbrun_deepvariant:
     input:
         bam="parabricks/pbrun_fq2bam/{sample}_{type}.bam",
         bai="parabricks/pbrun_fq2bam/{sample}_{type}.bam.bai",
-        fasta=config.get("reference", {}).get("fasta", ""),
+        fasta=lambda wildcards: get_config_value("reference", "fasta"),
     output:
         vcf=temp("parabricks/pbrun_deepvariant/{sample}_{type}.vcf"),
     params:
@@ -50,7 +50,7 @@ rule pbrun_deepvariant:
 rule pbrun_fq2bam:
     input:
         fastq=lambda wildcards: get_input_fastq(units, wildcards),
-        fasta=config.get("reference", {}).get("fasta", ""),
+        fasta=lambda wildcards: get_config_value("reference", "fasta"),
     output:
         bam=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam"),
         bai=temp("parabricks/pbrun_fq2bam/{sample}_{type}.bam.bai"),
@@ -94,8 +94,8 @@ rule pbrun_fq2bam:
 rule pbrun_fq2bam_recal:
     input:
         fastq=lambda wildcards: get_input_fastq(units, wildcards),
-        fasta=config.get("reference", {}).get("fasta", ""),
-        sites=config.get("reference", {}).get("sites", ""),
+        fasta=lambda wildcards: get_config_value("reference", "fasta"),
+        sites=lambda wildcards: get_config_value("reference", "sites"),
     output:
         bam=temp("parabricks/pbrun_fq2bam_recal/{sample}_{type}.bam"),
         bai=temp("parabricks/pbrun_fq2bam_recal/{sample}_{type}.bam.bai"),
@@ -144,7 +144,7 @@ rule pbrun_mutectcaller_t:
         bam_t="parabricks/pbrun_fq2bam_recal/{sample}_T.bam",
         bai_t="parabricks/pbrun_fq2bam_recal/{sample}_T.bam.bai",
         recal_t="parabricks/pbrun_fq2bam_recal/{sample}_T.txt",
-        fasta=config.get("reference", {}).get("fasta", ""),
+        fasta=lambda wildcards: get_config_value("reference", "fasta"),
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_t/{sample}_T.vcf"),
     params:
@@ -193,7 +193,7 @@ rule pbrun_mutectcaller_tn:
         bam_n="parabricks/pbrun_fq2bam_recal/{sample}_N.bam",
         bai_n="parabricks/pbrun_fq2bam_recal/{sample}_N.bam.bai",
         recal_n="parabricks/pbrun_fq2bam_recal/{sample}_N.txt",
-        fasta=config.get("reference", {}).get("fasta", ""),
+        fasta=lambda wildcards: get_config_value("reference", "fasta"),
     output:
         vcf=temp("parabricks/pbrun_mutectcaller_tn/{sample}.vcf"),
     params:
@@ -240,7 +240,7 @@ rule pbrun_mutectcaller_tn:
 rule pbrun_rna_fq2bam:
     input:
         fastq=lambda wildcards: get_input_fastq(units, wildcards),
-        genome_dir=config.get("reference", {}).get("genome_dir", ""),
+        genome_dir=lambda wildcards: get_config_value("reference", "genome_dir"),
     output:
         bam=temp("parabricks/pbrun_rna_fq2bam/{sample}_{type}.bam"),
     params:

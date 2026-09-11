@@ -4,24 +4,30 @@ type: object
 properties:
   resources:
     type: string
+    minLength: 1
     description: path to resources.yaml file
   samples:
     type: string
+    minLength: 1
     description: path to samples.tsv file
   units:
     type: string
+    minLength: 1
     description: path to units.tsv file
   reference:
     type: object
     properties:
       fasta:
         type: string
+        minLength: 1
         description: path to reference fasta file
       genome_dir:
         type: string
+        minLength: 1
         description: path to STAR reference directory
       sites:
         type: string
+        minLength: 1
         description: path to known sites list file
     required:
       - fasta
@@ -35,6 +41,7 @@ properties:
         description: set number of times benchmark should be repeated
       deepvariant_model:
         type: string
+        minLength: 1
         description: deepvariant model file
       extra:
         type: string

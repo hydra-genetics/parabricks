@@ -3,6 +3,6 @@ samples: "samples.tsv"
 units: "units.tsv"
 
 reference:
-  fasta: ""
-  genome_dir: ""
-  sites: ""
+  fasta: "reference/reference.fasta"
+  genome_dir: "reference/"
+  sites: "reference/sites.list"
